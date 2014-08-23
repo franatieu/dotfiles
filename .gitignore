@@ -1,0 +1,10 @@
+# Ignore everything
+#---------------------------------------------------
+*
+
+# Dont ignore the following
+#---------------------------------------------------
+!.gitignore
+!.bash_profile
+!.bashrc
+!.gitconfig

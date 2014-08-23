@@ -1,0 +1,11 @@
+[user]
+	name = Mathieu
+	email = gosselin.mathieug@gmail.com
+[color]
+	ui = true
+[core]
+	editor = nano
+[merge]
+	ff = false
+[push]
+	default = simple
