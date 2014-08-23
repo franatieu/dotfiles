@@ -10,6 +10,11 @@ alias gm="git merge --no-ff"
 alias gb='git branch -a'
 alias gfr='git fetch; git rebase;'
 alias gl='git log --abbrev-commit;'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gsi='git submodule init; git submodule update'
+alias gsu='git submodule sync; git submodule update'
+alias gss='git submodule sync'
 
 # ---------------------------------------------------------------------
 # Functions
