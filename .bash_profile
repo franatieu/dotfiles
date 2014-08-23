@@ -8,6 +8,8 @@ alias gp='git push;'
 alias gch="git checkout"
 alias gm="git merge --no-ff"
 alias gb='git branch -a'
+alias gfr='git fetch; git rebase;'
+alias gl='git log --abbrev-commit;'
 
 # ---------------------------------------------------------------------
 # Functions
