@@ -3,6 +3,7 @@
 # ---------------------------------------------------------------------
 alias gs='git status;'
 alias gc='git add -A; git commit -a;'
+alias gcm='git commit -m'
 alias ga='git add -A;'
 alias gp='git push;'
 alias gch="git checkout"
@@ -57,7 +58,8 @@ alias flushDNS='dscacheutil -flushcache'
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
+alias composer='sudo composer'
+alias nano='sudo nano'
 
 
 
