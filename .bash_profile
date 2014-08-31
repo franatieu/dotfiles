@@ -16,6 +16,7 @@ alias gdc='git diff --cached'
 alias gsi='git submodule init; git submodule update'
 alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
+alias grh='git reset --hard'
 
 # ---------------------------------------------------------------------
 # Functions
