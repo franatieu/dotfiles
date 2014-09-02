@@ -37,7 +37,7 @@ export PATH=/usr/local/php5/bin:$PATH
 # ---------------------------------------------------------------------
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\] \[\033[32m\]\$(parse_git_branch)\[\033[m\] "
 export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+export LSCOLORS=fxFxBxDxCxegedabagacad
 
 # ---------------------------------------------------------------------
 # Default Editor
@@ -53,8 +53,8 @@ export BLOCKSIZE=1k
 # General aliases
 # ---------------------------------------------------------------------
 alias edit='subl'
-alias ~="cd ~"   
-alias c='clear' 
+alias ~="cd ~"
+alias c='clear'
 alias path='echo -e ${PATH//:/\\n}'
 alias rmr='sudo rm -R'
 alias flushDNS='dscacheutil -flushcache'
