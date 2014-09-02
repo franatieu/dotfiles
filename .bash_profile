@@ -35,6 +35,10 @@ apply_nanorc() {
   sudo rm -R /usr/local/share/nano/*;
   sudo ln -s ~/nanorc/* /usr/local/share/nano/;
   sudo cat /dev/null > ~/.nanorc;
+  for file in /usr/local/share/nano/*
+  do
+    echo "include \"$file\";" >> ~/.nanorc;
+  done
 }
 
 # ---------------------------------------------------------------------

@@ -10,4 +10,6 @@
 !.gitconfig
 !.preferences.sublime-settings
 !.nanorc
-!nanorc/
+!nanorc
+!nanorc/*
+!nanorc/*.nanorc
