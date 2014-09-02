@@ -26,6 +26,16 @@ alias grh='git reset --hard'
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+dot_sublime_preferences() {
+  sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings;
+  ln -s ~/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings
+}
+apply_nanorc() {
+  sudo mkdir /usr/local/share/nano;
+  sudo rm -R /usr/local/share/nano/*;
+  sudo ln -s ~/nanorc/* /usr/local/share/nano/;
+  sudo cat /dev/null > ~/.nanorc;
+}
 
 # ---------------------------------------------------------------------
 # Path
