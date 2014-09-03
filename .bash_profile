@@ -19,6 +19,7 @@ alias gsi='git submodule init; git submodule update'
 alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
 alias grh='git reset --hard'
+alias sourcebash='source ~/.bash_profile;'
 
 # ---------------------------------------------------------------------
 # Functions
@@ -31,8 +32,18 @@ dot_sublime_preferences() {
   ln -s ~/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings
 }
 apply_nanorc() {
-  sudo mkdir /usr/local/share/nano;
-  sudo rm -R /usr/local/share/nano/*;
+  if [ ! -f /usr/local/share ]
+  then
+    sudo mkdir /usr/local/share;
+  fi
+  if [ ! -f /usr/local/share/nano ]
+  then
+    sudo mkdir /usr/local/share/nano;
+  fi
+  if [ -f /usr/local/share/nano/* ]
+  then
+    sudo rm -R /usr/local/share/nano/*;
+  fi
   sudo ln -s ~/nanorc/* /usr/local/share/nano/;
   sudo cat /dev/null > ~/.nanorc;
   for file in /usr/local/share/nano/*
