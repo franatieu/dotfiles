@@ -8,7 +8,9 @@ alias ga='git add -A;'
 alias gp='git push;'
 alias gch="git checkout"
 alias gm="git merge --no-ff"
-alias gb='git branch -a'
+alias gba='git branch -a'
+alias gsh='git stash'
+alias gshp='git stash pop'
 alias gfr='git fetch; git rebase;'
 alias gf='git fetch'
 alias gr='git rebase'
@@ -20,6 +22,7 @@ alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
 alias grh='git reset --hard'
 alias sourcebash='source ~/.bash_profile;'
+alias editbash='sudo nano ~/.bash_profile;'
 
 # ---------------------------------------------------------------------
 # Functions
