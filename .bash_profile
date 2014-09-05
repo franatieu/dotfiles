@@ -23,6 +23,7 @@ alias gss='git submodule sync'
 alias grh='git reset --hard'
 alias sourcebash='source ~/.bash_profile;'
 alias editbash='sudo nano ~/.bash_profile;'
+alias cdprojects='cd ~/projects/'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 
@@ -33,8 +34,8 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 dot_sublime_preferences() {
-  sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings;
-  ln -s ~/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings
+  sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings;
+  ln -s ~/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
 }
 apply_nanorc() {
   if [ ! -f /usr/local/share ]
