@@ -1,10 +1,11 @@
 {
 	"bold_folder_labels": true,
+	//"color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
 	"default_line_ending": "unix",
+	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 12,
 	"highlight_modified_tabs": true,
-	"draw_white_space": "all",
 	"ignored_packages":
 	[
 		"Vintage",
@@ -17,6 +18,7 @@
 	],
 	"scroll_past_end": true,
 	"tab_size": 2,
+	//"theme": "Afterglow.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true
