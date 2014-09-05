@@ -23,6 +23,8 @@ alias gss='git submodule sync'
 alias grh='git reset --hard'
 alias sourcebash='source ~/.bash_profile;'
 alias editbash='sudo nano ~/.bash_profile;'
+alias sleepnow='pmset sleepnow'
+alias bed='sleepnow'
 
 # ---------------------------------------------------------------------
 # Functions
