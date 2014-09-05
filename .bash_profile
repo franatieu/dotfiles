@@ -26,6 +26,7 @@ alias editbash='sudo nano ~/.bash_profile;'
 alias cdprojects='cd ~/projects/'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
+alias ..='cd ..'
 
 # ---------------------------------------------------------------------
 # Functions
