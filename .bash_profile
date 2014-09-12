@@ -13,6 +13,7 @@ alias ga='git add -A;'
 alias gp='git push;'
 alias gch="git checkout"
 alias gm="git merge --no-ff"
+alias gb="git branch"
 alias gba='git branch -a'
 alias gsh='git stash'
 alias gshp='git stash pop'
