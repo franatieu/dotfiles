@@ -11,6 +11,7 @@ alias gc='git add -A; git commit -a;'
 alias gcm='git commit -m'
 alias ga='git add -A;'
 alias gp='git push;'
+alias gpu='git push -u'
 alias gch="git checkout"
 alias gchb="git checkout -b"
 alias gm="git merge --no-ff"
