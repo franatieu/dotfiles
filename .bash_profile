@@ -6,10 +6,11 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Use
 # ---------------------------------------------------------------------
 # Git
 # ---------------------------------------------------------------------
-alias gs='git status;'
+alias gs='git status'
 alias gc='git add -A; git commit -a;'
 alias gcm='git commit -m'
-alias ga='git add -A;'
+alias ga='git add'
+alias gaa='git add -a'
 alias gp='git push;'
 alias gpu='git push -u'
 alias gch="git checkout"
@@ -31,8 +32,8 @@ alias gsi='git submodule init; git submodule update'
 alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
 alias grh='git reset --hard'
-alias sourcebash='source ~/.bash_profile;'
-alias editbash='sudo nano ~/.bash_profile;'
+alias sourcebash='source ~/.bash_profile'
+alias editbash='sudo nano ~/.bash_profile'
 alias cdprojects='cd ~/projects/'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
