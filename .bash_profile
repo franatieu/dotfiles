@@ -38,6 +38,7 @@ alias cdprojects='cd ~/projects/'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 alias ..='cd ..'
+alias la='ls -als'
 
 # ---------------------------------------------------------------------
 # Functions
