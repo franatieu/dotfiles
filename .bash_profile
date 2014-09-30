@@ -43,6 +43,9 @@ alias la='ls -als'
 # ---------------------------------------------------------------------
 # Functions
 # ---------------------------------------------------------------------
+sass_example() {
+  echo 'sass --watch dev/scss/main.scss:dev/css/main.min.css --style compressed';
+}
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
