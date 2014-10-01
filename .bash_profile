@@ -39,6 +39,10 @@ alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 alias ..='cd ..'
 alias la='ls -als'
+alias gpt='git push origin --tags'
+alias gt='git tag'
+alias gts='git tag show'
+alias gta-'git tag -a'
 
 # ---------------------------------------------------------------------
 # Functions
