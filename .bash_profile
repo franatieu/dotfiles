@@ -42,7 +42,7 @@ alias la='ls -als'
 alias gpt='git push origin --tags'
 alias gt='git tag'
 alias gts='git tag show'
-alias gta-'git tag -a'
+alias gta='git tag -a'
 
 # ---------------------------------------------------------------------
 # Functions
