@@ -43,6 +43,9 @@ alias gpt='git push origin --tags'
 alias gt='git tag'
 alias gts='git tag show'
 alias gta='git tag -a'
+alias gass='git update-index --assume-unchanged'
+alias gassu='git update-index --no-assume-unchanged'
+alias gassl='!git ls-files -v | grep ^h | cut -c 3-'
 
 # ---------------------------------------------------------------------
 # Functions
