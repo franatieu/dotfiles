@@ -6,6 +6,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Use
 # ---------------------------------------------------------------------
 # Git
 # ---------------------------------------------------------------------
+alias gcp='git cherry-pick'
 alias gs='git status'
 alias gc='git add -A; git commit -a;'
 alias gcm='git commit -m'
