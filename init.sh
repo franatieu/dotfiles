@@ -2,7 +2,7 @@
 
 tput sgr0; echo '...'
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
-tput setaf 2; echo “.bash_profile done”
+tput setaf 2; echo '.bash_profile done'
 
 tput sgr0; echo '...'
 ln -sf ~/dotfiles/.bashrc ~/.bashrc;
