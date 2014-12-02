@@ -41,3 +41,10 @@ if [ ! -f /usr/bin/composer ]; then
 else
     tput setaf 2; echo 'Composer is installed'
 fi
+
+tput sgr0; echo '...'
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+    tput setaf 1; echo 'No SSH key found. You should generate a ssh key for security reason.'
+else
+    tput setaf 2; echo 'SSH key found'
+fi
