@@ -1,20 +1,26 @@
 #!/bin/bash
 
-echo '...'
+tput sgr0; echo '...'
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
-echo '.bash_profile done'
+tput setaf 2; echo “.bash_profile done”
 
-echo '...'
+tput sgr0; echo '...'
 ln -sf ~/dotfiles/.bashrc ~/.bashrc;
-echo '.bashrc done'
+tput setaf 2; echo “.bashrc done”
 
-echo '...'
+tput sgr0; echo '...'
 if [ ! -f ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings ]; then
-  echo "Install sublime text 3 to get generic sublime preferences settings from dotfiles"
+    tput setaf 1; echo "Install sublime text 3 to get generic sublime preferences settings from dotfiles"
 else
   sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings;
   ln -s ~/dotfiles/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  echo 'Sublime Text 3 preferences done'
+  tput setaf 2; echo 'Sublime Text 3 preferences done'
 fi
 echo '...'
 
+tput sgr0; echo '...'
+if [ ! -f /usr/bin/composer ]; then
+    tput setaf 1; echo "Composer is not installed"
+else
+    tput setaf 2; echo 'Composer is installed'
+fi
