@@ -48,3 +48,4 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
 else
     tput setaf 2; echo 'SSH key found'
 fi
+tput sgr0; echo '...'
