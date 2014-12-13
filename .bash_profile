@@ -100,6 +100,7 @@ alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 alias composer='sudo composer'
 alias nano='sudo nano'
+alias npm='sudo npm'
 
 
 
