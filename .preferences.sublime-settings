@@ -7,9 +7,9 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
 		"GitGutter",
-		"FarCry"
+		"FarCry",
+		"Vintage"
 	],
 	"rulers":
 	[

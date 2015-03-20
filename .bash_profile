@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/Master/bin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/Master/bin:~/.composer/vendor/bin
 
 # ---------------------------------------------------------------------
 # Git
@@ -40,8 +40,6 @@ alias sourcebash='source ~/.bash_profile'
 alias editbash='sudo nano ~/.bash_profile'
 alias dotfiles='cd ~/dotfiles'
 alias cdprojects='cd ~/projects/'
-alias sleepnow='pmset sleepnow'
-alias bed='sleepnow'
 alias ..='cd ..'
 alias la='ls -als'
 alias gpt='git push origin --tags'
@@ -94,14 +92,18 @@ alias ~="cd ~"
 alias c='clear'
 alias path='echo -e ${PATH//:/\\n}'
 alias rmr='sudo rm -R'
-alias flushdns='sudo discoveryutil mdnsflushcache'
+alias flushdns='sudo discoveryutil mdnsflushcache; sudo discoveryutil udnsflushcaches'
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 alias composer='sudo composer'
+alias composerinstall='composer install --prefer-dist'
 alias nano='sudo nano'
 alias npm='sudo npm'
+alias sleepnow='pmset sleepnow'
+alias bed='sleepnow'
 
-
-
-
+# ---------------------------------------------------------------------
+# Misc
+# ---------------------------------------------------------------------
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
