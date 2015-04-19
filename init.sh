@@ -5,9 +5,14 @@ ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
 echo '.bash_profile link done'
 
 echo '...'
+ln -sf ~/dotfiles/.gitconfig ~/.gitconfig;
+echo '.gitconfig link done'
+
+echo '...'
 ln -sf ~/dotfiles/.bashrc ~/.bashrc;
 echo '.bashrc link done'
 
+echo '...'
 if ! type "brew" > /dev/null; then
   echo 'Homebrew is not installed'
   echo 'Installing...'
@@ -16,6 +21,7 @@ else
   echo 'Homebrew is installed'
 fi
 
+echo '...'
 if ! type "wget" > /dev/null; then
   echo 'wget is not installed'
   echo 'Installing...'
@@ -24,6 +30,7 @@ else
   echo 'wget is installed'
 fi
 
+echo '...'
 if command -v "brew cask" >/dev/null 2>&1; then
   echo 'Homebrew cask is not installed'
   echo 'Installing...'
@@ -44,12 +51,13 @@ else
 fi
 
 echo '...'
-if [ ! -f /Applications/MAMP/bin/php/php5.6.7/bin/php ]; then
+LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | head -1)
+if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
     echo "MAMP Pro is not installed"
 else
-  sudo cp -f /Applications/MAMP/bin/php/php5.6.7/bin/php /usr/bin/php
+  sudo cp -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php /usr/bin/php
   echo 'MAMP is installed'
-  echo 'php 5.6.2 link done'
+  echo "$LATESTPHP link done"
 fi
 
 echo '...'
