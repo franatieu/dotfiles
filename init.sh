@@ -1,70 +1,93 @@
 #!/bin/bash
 
-tput sgr0; echo '...'
+echo '...'
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
-tput setaf 2; echo '.bash_profile link done'
+echo '.bash_profile link done'
 
-tput sgr0; echo '...'
+echo '...'
 ln -sf ~/dotfiles/.bashrc ~/.bashrc;
-tput setaf 2; echo '.bashrc link done'
+echo '.bashrc link done'
 
-if which brew >/dev/null; then
-  tput sgr1; echo 'Brew is not installed'
-  tput sgr1; echo 'Installing...'
+if ! type "brew" > /dev/null; then
+  echo 'Homebrew is not installed'
+  echo 'Installing...'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
-  tput setaf 2; echo 'Brew is installed'
+  echo 'Homebrew is installed'
 fi
 
-if which wget --help >/dev/null; then
-  tput sgr1; echo 'wget is not installed'
-  tput sgr1; echo 'Installing...'
+if ! type "wget" > /dev/null; then
+  echo 'wget is not installed'
+  echo 'Installing...'
   brew install wget
 else
-  tput setaf 2; echo 'wget is installed'
+  echo 'wget is installed'
 fi
 
-tput sgr0; echo '...'
-if [ ! -f ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings ]; then
-    tput setaf 1; echo "Sublime text 3 is not installed"
+if command -v "brew cask" >/dev/null 2>&1; then
+  echo 'Homebrew cask is not installed'
+  echo 'Installing...'
+  brew install caskroom/cask/brew-cask
+else
+  echo 'Homebrew cask is installed'
+fi
+
+echo '...'
+if [ ! -f /Applications/Sublime\ Text.app ]; then
+    echo "Sublime text 3 is not installed"
 else
   sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings;
   ln -s ~/dotfiles/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  tput setaf 2; echo 'Sublime Text 3 preferences link done'
+  echo 'Sublime Text 3 preferences link done'
   sudo ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/subl
-  tput setaf 2; echo 'subl link done'
+  echo 'subl link done'
 fi
 
-tput sgr0; echo '...'
-if [ ! -f /Applications/MAMP/bin/php/php5.6.2/bin/php ]; then
-    tput setaf 1; echo "MAMP Pro is not installed"
+echo '...'
+if [ ! -f /Applications/MAMP/bin/php/php5.6.7/bin/php ]; then
+    echo "MAMP Pro is not installed"
 else
-  sudo cp -f /Applications/MAMP/bin/php/php5.6.2/bin/php /usr/bin/php
-  tput setaf 2; echo 'MAMP is installed'
-  tput setaf 2; echo 'php 5.6.2 link done'
+  sudo cp -f /Applications/MAMP/bin/php/php5.6.7/bin/php /usr/bin/php
+  echo 'MAMP is installed'
+  echo 'php 5.6.2 link done'
 fi
 
-tput sgr0; echo '...'
-if which git >/dev/null; then
-    tput setaf 1; echo 'Git is not installed'
+echo '...'
+if ! type "git" > /dev/null; then
+    echo 'Git is not installed'
 else
-  tput setaf 2; echo 'Git is installed'
+  echo 'Git is installed'
 fi
 
-tput sgr0; echo '...'
-if [ ! -f /usr/bin/composer ]; then
-    tput setaf 1; echo 'Composer is not installed'
-    tput setaf 1; echo 'Installing...'
+echo '...'
+if ! type "composer" > /dev/null; then
+    echo 'Composer is not installed'
+    echo 'Installing...'
     curl -sS https://getcomposer.org/installer | php
-    mv composer.phar /usr/bin/composer
+    sudo mv composer.phar /usr/bin/composer
 else
-    tput setaf 2; echo 'Composer is installed'
+    echo 'Composer is installed'
 fi
 
-tput sgr0; echo '...'
-if [ ! -f ~/.ssh/id_rsa.pub ]; then
-    tput setaf 1; echo 'No SSH key found. You should generate a ssh key for security reason.'
+echo '...'
+if ! type "bower" > /dev/null; then
+    echo 'Bower not installed'
+    echo 'Installing...'
+    sudo npm install -g bower
 else
-    tput setaf 2; echo 'SSH key found'
+    echo 'Bower is installed'
 fi
-tput sgr0; echo '...'
+
+echo '...'
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+    echo 'No SSH key found.'
+    echo 'Generating...'
+    echo "Please enter your email address:" 
+    read -e GITEMAIL
+    ssh-keygen -t rsa -C $GITEMAIL
+else
+    echo 'SSH key found'
+fi
+
+
+echo '...'

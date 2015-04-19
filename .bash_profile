@@ -2,6 +2,7 @@
 # Same PATH
 # ---------------------------------------------------------------------
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/Master/bin:~/.composer/vendor/bin
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
 
 # ---------------------------------------------------------------------
 # Git
