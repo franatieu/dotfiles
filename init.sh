@@ -31,7 +31,7 @@ if [ ! -d ~/Projects/phpmyadmin-themes ]; then
   echo '.'
   cd ~/Projects
   git clone https://github.com/phpmyadmin/themes.git phpmyadmin-themes
-  rsync -av ~/Projects/phpmyadmin-themes /Applications/MAMP/bin/phpMyAdmin/themes
+  rsync -av ~/Projects/phpmyadmin-themes/ /Applications/MAMP/bin/phpMyAdmin/themes
   cd ~
   echo '.'
 else

@@ -5,51 +5,82 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Use
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
 
 # ---------------------------------------------------------------------
-# Git
+# Git aliases
 # ---------------------------------------------------------------------
-alias gcp='git cherry-pick'
+# general
 alias gs='git status'
-alias gc='git add -A; git commit -a;'
-alias gcm='git commit -m'
-alias ga='git add'
-alias gaa='git add -A .'
-alias gp='git push;'
-alias gpu='git push -u'
-alias gpuo='git push -u origin'
-alias gphdm='git push heroku dev:master'
-alias gphm='git push heroku master'
-alias gch="git checkout"
-alias gchb="git checkout -b"
-alias gm="git merge --no-ff"
-alias gb="git branch"
-alias gba='git branch -a'
-alias gsh='git stash'
-alias gshp='git stash pop'
 alias gfr='git fetch; git rebase;'
 alias gf='git fetch'
 alias gr='git rebase'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
+alias grh='git reset --hard'
+# add
+alias ga='git add'
+alias gaa='git add -A .'
+# commit
+alias gc='git add -A; git commit -a;'
+alias gcm='git commit -m'
+# merge
+alias gcp='git cherry-pick'
+alias gm="git merge --no-ff"
+alias gass='git update-index --assume-unchanged'
+alias gassu='git update-index --no-assume-unchanged'
+alias gassl='!git ls-files -v | grep ^h | cut -c 3-'
+# log
 alias gl='git log --abbrev-commit;'
-alias gd='git diff'
-alias gdc='git diff --cached'
+alias grl='git reflog;'
+# submodule
 alias gsi='git submodule init; git submodule update'
 alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
-alias grh='git reset --hard'
-alias sourcebash='source ~/.bash_profile'
-alias editbash='sudo nano ~/.bash_profile'
-alias dotfiles='cd ~/dotfiles'
-alias cdprojects='cd ~/projects/'
-alias ..='cd ..'
-alias la='ls -als'
+# push
+alias gp='git push;'
+alias gpu='git push -u'
+alias gpuo='git push -u origin'
+alias gphdm='git push heroku dev:master'
+alias gphm='git push heroku master'
+# branch
+alias gch="git checkout"
+alias gchb="git checkout -b"
+alias gb="git branch"
+alias gba='git branch -a'
+# stash
+alias gsh='git stash'
+alias gshp='git stash pop'
+# tags
 alias gpt='git push origin --tags'
 alias gt='git tag'
 alias gts='git tag show'
 alias gta='git tag -a'
-alias gass='git update-index --assume-unchanged'
-alias gassu='git update-index --no-assume-unchanged'
-alias gassl='!git ls-files -v | grep ^h | cut -c 3-'
+# diff
+alias gd='git diff'
+alias gdc='git diff --cached'
+
+# ---------------------------------------------------------------------
+# Other aliases
+# ---------------------------------------------------------------------
+alias sourcebash='source ~/.bash_profile'
+alias editbash='sudo nano ~/.bash_profile'
+alias dotfiles='cd ~/dotfiles'
+alias projects='cd ~/projects/'
+alias ..='cd ..'
+alias la='ls -als'
+alias edit='subl'
+alias ~="cd ~"
+alias c='clear'
+alias path='echo -e ${PATH//:/\\n}'
+alias rmr='sudo rm -R'
+alias flushdns='sudo discoveryutil mdnsflushcache; sudo discoveryutil udnsflushcaches'
+alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
+alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+alias composer='sudo composer'
+alias composerinstall='composer install --prefer-dist'
+alias nano='sudo nano'
+alias npm='sudo npm'
+alias sleepnow='pmset sleepnow'
+alias bed='sleepnow'
 
 # ---------------------------------------------------------------------
 # Functions
@@ -84,25 +115,6 @@ export EDITOR=/usr/bin/nano
 # Default Blocksize for ls etc.
 # ---------------------------------------------------------------------
 export BLOCKSIZE=1k
-
-# ---------------------------------------------------------------------
-# General aliases
-# ---------------------------------------------------------------------
-alias edit='subl'
-alias ~="cd ~"
-alias c='clear'
-alias path='echo -e ${PATH//:/\\n}'
-alias rmr='sudo rm -R'
-alias flushdns='sudo discoveryutil mdnsflushcache; sudo discoveryutil udnsflushcaches'
-alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
-alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-alias composer='sudo composer'
-alias composerinstall='composer install --prefer-dist'
-alias nano='sudo nano'
-alias npm='sudo npm'
-alias sleepnow='pmset sleepnow'
-alias bed='sleepnow'
 
 # ---------------------------------------------------------------------
 # Misc
