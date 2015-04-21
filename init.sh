@@ -35,7 +35,7 @@ if [ ! -d ~/Projects/phpmyadmin-themes ]; then
   cd ~
   echo '.'
 else
-  echo 'mhnui theme is installed'
+  echo 'phpmyadmin themes are installed'
 fi
 
 echo '...'
