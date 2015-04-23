@@ -15,6 +15,7 @@ alias gr='git rebase'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grh='git reset --hard'
+alias ggc='git gc'
 # add
 alias ga='git add'
 alias gaa='git add -A .'
@@ -45,6 +46,7 @@ alias gch="git checkout"
 alias gchb="git checkout -b"
 alias gb="git branch"
 alias gba='git branch -a'
+alias gbd='git branch -D'
 # stash
 alias gsh='git stash'
 alias gshp='git stash pop'
