@@ -92,6 +92,13 @@ alias bed='sleepnow'
 sass_example() {
   echo 'sass --watch dev/scss/main.scss:dev/css/main.min.css --style compressed';
 }
+php_server() {
+  PHP=$(which php)
+  HOST=localhost
+  read -e -p "Port:" -i "5000" PORT
+  read -e -p "Root:" -i $PWD DOCROOT
+  $PHP -S $HOST:$PORT -t $DOCROOT
+}
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
