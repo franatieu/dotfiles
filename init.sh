@@ -25,19 +25,6 @@ else
   echo 'Projects exists'
 fi
 
-if [ ! -d ~/Projects/phpmyadmin-themes ]; then
-  echo 'phpmyadmin themes are missing'
-  echo 'installing...'
-  echo '.'
-  cd ~/Projects
-  git clone https://github.com/phpmyadmin/themes.git phpmyadmin-themes
-  rsync -av ~/Projects/phpmyadmin-themes/ /Applications/MAMP/bin/phpMyAdmin/themes
-  cd ~
-  echo '.'
-else
-  echo 'phpmyadmin themes are installed'
-fi
-
 echo '...'
 if ! command -v "rvm" >/dev/null; then
   echo 'rvm is not installed'
@@ -212,17 +199,17 @@ else
   echo 'middleman is installed'
 fi
 
-echo '...'
-if [ ! -f ~/.ssh/id_rsa.pub ]; then
-  echo 'No SSH key found.'
-  echo 'Generating...'
-  echo "Please enter your email address:"
-  read -e GITEMAIL
-  ssh-keygen -t rsa -C $GITEMAIL
-  echo '.'
-else
-  echo 'SSH key found'
-fi
+#echo '...'
+#if [ ! -f ~/.ssh/id_rsa.pub ]; then
+#  echo 'No SSH key found.'
+#  echo 'Generating...'
+#  echo "Please enter your email address:"
+#  read -e GITEMAIL
+#  ssh-keygen -t rsa -C $GITEMAIL
+#  echo '.'
+#else
+#  echo 'SSH key found'
+#fi
 
 
 echo '...'

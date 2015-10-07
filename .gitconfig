@@ -21,6 +21,7 @@
   untracked = cyan
 [core]
 	editor = nano
+	excludesfile = /Users/Master/.gitignore_global
 [merge]
 	ff = false
 [push]
