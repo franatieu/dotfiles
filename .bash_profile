@@ -85,6 +85,7 @@ alias nano='sudo nano'
 alias npm='sudo npm'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
+alias tower='gittower'
 
 # ---------------------------------------------------------------------
 # Functions
