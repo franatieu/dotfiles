@@ -86,6 +86,7 @@ alias npm='sudo npm'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 alias tower='gittower'
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete; find . -type f -name '*.LCK' -ls -delete; find . -name "_notes" -print0 | xargs -0 rm -rf;"
 
 # ---------------------------------------------------------------------
 # Functions

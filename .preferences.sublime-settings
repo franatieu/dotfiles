@@ -7,9 +7,9 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"FarCry",
 		"GitGutter",
-		"Vintage",
-		"FarCry"
+		"Vintage"
 	],
 	"rulers":
 	[
@@ -17,6 +17,7 @@
 	],
 	"scroll_past_end": true,
 	"tab_size": 2,
+	"detect_indentation": true,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true
