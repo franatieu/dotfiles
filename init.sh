@@ -1,215 +1,242 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-echo '...'
+echo -e "..."
+echo -e "Checking finder showing hidden files..."
 defaults write com.apple.finder AppleShowAllFiles YES.
-echo 'Showing hidden files done'
+echo -e "${GREEN}Showing hidden files done${NC}"
 
-echo '...'
+echo -e "..."
+echo -e "Checking .bash_profile..."
+sleep 1
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
-echo '.bash_profile link done'
+echo -e "${GREEN}.bash_profile link done${NC}"
 
-echo '...'
+echo -e "..."
+echo -e "Checking .gitconfig..."
+sleep 1
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig;
-echo '.gitconfig link done'
+echo -e "${GREEN}.gitconfig link done${NC}"
 
-echo '...'
+echo -e "..."
+echo -e "Checking .bashrc..."
+sleep 1
 ln -sf ~/dotfiles/.bashrc ~/.bashrc;
-echo '.bashrc link done'
+echo -e "${GREEN}.bashrc link done${NC}"
 
-echo '...'
+echo -e "..."
+echo -e "Checking projects folder..."
+sleep 1
 if [ ! -d ~/Projects ]; then
-  echo 'Projects is missing'
-  echo 'Creating Projects folder...'
+  echo -e "${RED}Projects folder is missing${NC}"
+  echo -e "Creating Projects folder..."
   mkdir ~/Projects
 else
-  echo 'Projects exists'
+  echo -e "${GREEN}Projects folder already exists${NC}"
 fi
 
-echo '...'
-if ! command -v "rvm" >/dev/null; then
-  echo 'rvm is not installed'
-  echo 'installing...'
-  echo '.'
-  \curl -sSL https://get.rvm.io | bash -s stable --ruby
-  echo '.'
-else
-  echo 'rvm is installed'
-fi
-
-echo '...'
-if ! command -v "brew" > /dev/null; then
-  echo 'Homebrew is not installed'
-  echo 'Installing...'
-  echo '.'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  echo '.'
-else
-  echo 'Homebrew is installed'
-fi
-
-echo '...'
-if ! command -v "wget" > /dev/null; then
-  echo 'wget is not installed'
-  echo 'Installing...'
-  echo '.'
-  brew install wget
-  echo '.'
-else
-  echo 'wget is installed'
-fi
-
-echo '...'
-if command -v "brew cask" >/dev/null 2>&1; then
-  echo 'Homebrew cask is not installed'
-  echo 'Installing...'
-  echo '.'
-  brew install caskroom/cask/brew-cask
-  echo '.'
-else
-  echo 'Homebrew cask is installed'
-fi
-
-echo '...'
+echo -e "..."
+echo -e "Checking sublime preferences..."
+sleep 1
 if [ ! -d /Applications/Sublime\ Text.app ]; then
-    echo "Sublime text 3 is not installed"
+  echo -e "${RED}Sublime text 3 is not installed${NC}"
 else
-  sudo rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings;
+  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
   ln -s ~/dotfiles/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+
+  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/PHP.sublime-settings
+  ln -s ~/dotfiles/.PHP.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/PHP.sublime-settings
+
+  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
   ln -s ~/dotfiles/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
-  echo 'Sublime Text 3 preferences link done'
-  sudo ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/subl
-  echo 'subl link done'
+  echo -e "${GREEN}Sublime Text 3 preferences link done${NC}"
+
+  if [ ! -f /usr/bin/subl ]; then
+    sudo ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/subl
+    echo -e "${GREEN}command line «subl» done${NC}"
+  fi
 fi
 
-echo '...'
+echo -e "..."
+echo -e "Checking php..."
+sleep 1
 LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | head -1)
 if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
-  echo "MAMP Pro is not installed"
+  echo -e "${RED}MAMP Pro is not installed${NC}"
 else
   sudo cp -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php /usr/bin/php
-  echo 'MAMP is installed'
-  echo "$LATESTPHP link done"
+  echo -e "${GREEN}MAMP is installed${NC}"
+  echo -e "${GREEN}$LATESTPHP link done${NC}"
 fi
 
-echo '...'
+echo -e "..."
+echo -e "Checking git..."
+sleep 1
 if ! command -v "git" > /dev/null; then
-  echo 'Git is not installed'
+  echo -e "${RED}Git is not installed${NC}"
 else
-  echo 'Git is installed'
+  echo -e "${GREEN}Git is installed${NC}"
 fi
 
-echo '...'
+echo -e "..."
+echo -e "Checking composer..."
+sleep 1
 if ! command -v "composer" > /dev/null; then
-  echo 'Composer is not installed'
-  echo 'Installing...'
-  echo '.'
+  echo -e "${RED}Composer is not installed${NC}"
+  echo -e "======================================================================"
   curl -sS https://getcomposer.org/installer | php
   sudo mv composer.phar /usr/bin/composer
-  echo '.'
+  echo -e "======================================================================"
+  echo -e "${GREEN}Composer installation done${NC}"
 else
-    echo 'Composer is installed'
+  echo -e "${GREEN}Composer is installed${NC}"
 fi
 
-echo '...'
-if ! command -v "bower" > /dev/null; then
-  echo 'Bower not installed'
-  echo 'Installing...'
-  echo '.'
-  sudo npm install -g bower
-  echo '.'
-else
-    echo 'Bower is installed'
-fi
-
-echo '...'
-if ! command -v "bower-installer" >/dev/null; then
-  echo 'bower-installer is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo npm install -g bower-installer
-  echo '.'
-else
-  echo 'bower-installer is installed'
-fi
-
-echo '...'
-if ! command -v "mongod" >/dev/null; then
-  echo 'mongodb is not installed'
-  echo 'installing...'
-  echo '.'
-  brew install mongodb
-  sudo mkdir -p /data/db
-  echo '.'
-else
-  echo 'mongod is installed'
-fi
-
-echo '...'
-if ! command -v "gulp" >/dev/null; then
-  echo 'gulp is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo npm install --global gulp
-  echo '.'
-else
-  echo 'gulp is installed'
-fi
-
-echo '...'
-if ! command -v "nodemon" >/dev/null; then
-  echo 'nodemon is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo npm install -g nodemon
-  echo '.'
-else
-  echo 'nodemon is installed'
-fi
-
-echo '...'
-if ! command -v "sass" >/dev/null; then
-  echo 'sass is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo gem install sass
-  echo '.'
-else
-  echo 'sass is installed'
-fi
-
-echo '...'
-if ! command -v "bundler" >/dev/null; then
-  echo 'bundler is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo gem install bundler
-  echo '.'
-else
-  echo 'bundler is installed'
-fi
-
-echo '...'
-if ! command -v "middleman" >/dev/null; then
-  echo 'middleman is not installed'
-  echo 'installing...'
-  echo '.'
-  sudo gem install middleman
-  echo '.'
-else
-  echo 'middleman is installed'
-fi
-
-#echo '...'
-#if [ ! -f ~/.ssh/id_rsa.pub ]; then
-#  echo 'No SSH key found.'
-#  echo 'Generating...'
-#  echo "Please enter your email address:"
+echo -e "..."
+#sudo chown -R $(whoami)
+# echo -e "..."
+# if [ ! -f ~/.ssh/id_rsa.pub ]; then
+#  echo -e "No SSH key found."
+#  echo -e "Generating..."
+#  echo -e "Please enter your email address:"
 #  read -e GITEMAIL
 #  ssh-keygen -t rsa -C $GITEMAIL
-#  echo '.'
-#else
-#  echo 'SSH key found'
-#fi
+#  echo -e "."
+# else
+#  echo -e "SSH key found"
+# fi
 
+# echo -e "..."
+# if ! command -v "rvm" >/dev/null; then
+#   echo -e "rvm is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   \curl -sSL https://get.rvm.io | bash -s stable --ruby
+#   echo -e "."
+# else
+#   echo -e "rvm is installed"
+# fi
 
-echo '...'
+# echo -e "..."
+# if ! command -v "brew" > /dev/null; then
+#   echo -e "Homebrew is not installed"
+#   echo -e "Installing..."
+#   echo -e "."
+#   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#   echo -e "."
+# else
+#   echo -e "Homebrew is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "wget" > /dev/null; then
+#   echo -e "wget is not installed"
+#   echo -e "Installing..."
+#   echo -e "."
+#   brew install wget
+#   echo -e "."
+# else
+#   echo -e "wget is installed"
+# fi
+
+# echo -e "..."
+# if command -v "brew cask" >/dev/null 2>&1; then
+#   echo -e "Homebrew cask is not installed"
+#   echo -e "Installing..."
+#   echo -e "."
+#   brew install caskroom/cask/brew-cask
+#   echo -e "."
+# else
+#   echo -e "Homebrew cask is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "bower" > /dev/null; then
+#   echo -e "Bower not installed"
+#   echo -e "Installing..."
+#   echo -e "."
+#   sudo npm install -g bower
+#   echo -e "."
+# else
+#     echo -e "Bower is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "bower-installer" >/dev/null; then
+#   echo -e "bower-installer is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo npm install -g bower-installer
+#   echo -e "."
+# else
+#   echo -e "bower-installer is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "mongod" >/dev/null; then
+#   echo -e "mongodb is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   brew install mongodb
+#   sudo mkdir -p /data/db
+#   echo -e "."
+# else
+#   echo -e "mongod is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "gulp" >/dev/null; then
+#   echo -e "gulp is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo npm install --global gulp
+#   echo -e "."
+# else
+#   echo -e "gulp is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "nodemon" >/dev/null; then
+#   echo -e "nodemon is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo npm install -g nodemon
+#   echo -e "."
+# else
+#   echo -e "nodemon is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "sass" >/dev/null; then
+#   echo -e "sass is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo gem install sass
+#   echo -e "."
+# else
+#   echo -e "sass is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "bundler" >/dev/null; then
+#   echo -e "bundler is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo gem install bundler
+#   echo -e "."
+# else
+#   echo -e "bundler is installed"
+# fi
+
+# echo -e "..."
+# if ! command -v "middleman" >/dev/null; then
+#   echo -e "middleman is not installed"
+#   echo -e "installing..."
+#   echo -e "."
+#   sudo gem install middleman
+#   echo -e "."
+# else
+#   echo -e "middleman is installed"
+# fi

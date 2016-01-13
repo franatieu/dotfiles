@@ -1,6 +1,7 @@
 {
 	"bold_folder_labels": true,
 	"default_line_ending": "unix",
+	"detect_indentation": true,
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 12,
@@ -17,7 +18,6 @@
 	],
 	"scroll_past_end": true,
 	"tab_size": 2,
-	"detect_indentation": true,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true
