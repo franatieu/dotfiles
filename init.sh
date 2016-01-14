@@ -17,6 +17,13 @@ echo -e "${GREEN}.bash_profile link done${NC}"
 echo -e "..."
 echo -e "Checking .gitconfig..."
 sleep 1
+rm -rf ~/dotfiles/.gitconfig
+rm -rf ~/.gitconfig
+cp .gitconfig_default .gitconfig
+read -e -p "Please enter your desired git name: " GITNAME
+read -e -p "Please enter your git email: " GITEMAIL
+while read a ; do echo ${a//:name/$GITNAME} ; done < .gitconfig > .gitconfig.t ; mv .gitconfig{.t,}
+while read a ; do echo ${a//:email/$GITEMAIL} ; done < .gitconfig > .gitconfig.t ; mv .gitconfig{.t,}
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig;
 echo -e "${GREEN}.gitconfig link done${NC}"
 

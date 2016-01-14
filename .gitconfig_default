@@ -1,0 +1,28 @@
+[user]
+	name = :name
+	email = :email
+[color]
+  ui = true
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green bold
+  changed = red bold
+  untracked = cyan
+[core]
+	editor = nano
+	excludesfile = ~/.gitignore_global
+[merge]
+	ff = false
+[push]
+	default = simple
