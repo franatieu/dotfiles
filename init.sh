@@ -61,7 +61,7 @@ else
   echo -e "${GREEN}Sublime Text 3 preferences link done${NC}"
 
   if [ ! -f /usr/bin/subl ]; then
-    sudo ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/subl
+    ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
     echo -e "${GREEN}command line «subl» done${NC}"
   fi
 fi
@@ -73,7 +73,7 @@ LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | head -1)
 if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
   echo -e "${RED}MAMP Pro is not installed${NC}"
 else
-  sudo cp -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php /usr/bin/php
+  ln -sf /Applications/MAMP/bin/php/$LATESTPHP/bin/php /usr/local/bin/php
   echo -e "${GREEN}MAMP is installed${NC}"
   echo -e "${GREEN}$LATESTPHP link done${NC}"
 fi
@@ -93,8 +93,7 @@ sleep 1
 if ! command -v "composer" > /dev/null; then
   echo -e "${RED}Composer is not installed${NC}"
   echo -e "======================================================================"
-  curl -sS https://getcomposer.org/installer | php
-  sudo mv composer.phar /usr/bin/composer
+  curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
   echo -e "======================================================================"
   echo -e "${GREEN}Composer installation done${NC}"
 else
