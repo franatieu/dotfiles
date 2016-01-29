@@ -5,7 +5,7 @@ NC='\033[0m'
 
 echo -e "..."
 echo -e "Checking finder showing hidden files..."
-defaults write com.apple.finder AppleShowAllFiles YES.
+defaults write com.apple.finder AppleShowAllFiles YES
 echo -e "${GREEN}Showing hidden files done${NC}"
 
 echo -e "..."
@@ -60,7 +60,7 @@ else
   ln -s ~/dotfiles/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
   echo -e "${GREEN}Sublime Text 3 preferences link done${NC}"
 
-  if [ ! -f /usr/bin/subl ]; then
+  if [ ! -f /usr/local/bin/subl ]; then
     ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
     echo -e "${GREEN}command line «subl» done${NC}"
   fi
@@ -69,7 +69,7 @@ fi
 echo -e "..."
 echo -e "Checking php..."
 sleep 1
-LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | head -1)
+LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | sed -n 2p)
 if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
   echo -e "${RED}MAMP Pro is not installed${NC}"
 else
@@ -98,6 +98,14 @@ if ! command -v "composer" > /dev/null; then
   echo -e "${GREEN}Composer installation done${NC}"
 else
   echo -e "${GREEN}Composer is installed${NC}"
+  if [ ! -f /usr/local/bin/composer ]; then
+    echo -e "${RED}Composer is installed as root and shouldn't be${NC}"
+    echo -e "======================================================================"
+    sleep 1
+    curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    echo -e "======================================================================"
+    echo -e "${GREEN}Composer installation done${NC}"
+  fi
 fi
 
 echo -e "..."

@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/Applications/MAMP/bin/php/php5.6.10/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/Master/bin:~/.composer/vendor/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:~/bin:~/.composer/vendor/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
 
 # ---------------------------------------------------------------------
@@ -79,7 +79,7 @@ alias flushdns=' dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-alias composer='sudo composer'
+alias composer='composer'
 alias composerinstall='composer install --prefer-dist'
 alias nano='sudo nano'
 alias npm='sudo npm'
