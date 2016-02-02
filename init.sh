@@ -88,6 +88,16 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking «ren» command..."
+sleep 1
+if ! command -v "ren" > /dev/null; then
+  echo -e "${RED}Ren is not installed${NC}"
+  ln -sf ~/dotfiles/libs/ren /usr/local/bin/ren
+else
+  echo -e "${GREEN}Ren is installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking composer..."
 sleep 1
 if ! command -v "composer" > /dev/null; then
