@@ -93,6 +93,7 @@ sleep 1
 if ! command -v "ren" > /dev/null; then
   echo -e "${RED}Ren is not installed${NC}"
   ln -sf ~/dotfiles/libs/ren /usr/local/bin/ren
+  echo -e "${GREEN}Ren installation done${NC}"
 else
   echo -e "${GREEN}Ren is installed${NC}"
 fi
