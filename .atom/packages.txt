@@ -1,0 +1,10 @@
+atom-autocomplete-php
+docblockr
+emmet
+git-projects
+highlight-selected
+jquery-snippets
+mechanical-keyboard-1
+minimap
+php-twig
+simple-drag-drop-text

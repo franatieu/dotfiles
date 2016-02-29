@@ -1,0 +1,37 @@
+"*":
+  core:
+    disabledPackages: [
+      "mechanical-keyboard-1"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      ".Thumbs.db"
+    ]
+    openEmptyEditorOnStart: false
+    packagesWithKeymapsDisabled: [
+      "git-projects"
+    ]
+    projectHome: "~/Projects"
+    themes: [
+      "atom-dark-ui"
+      "one-dark-syntax"
+    ]
+  editor:
+    autoIndentOnPaste: false
+    fontSize: 11
+    invisibles: {}
+    normalizeIndentOnPaste: false
+    softWrap: true
+  "exception-reporting":
+    userId: "2285706d-2655-d574-7a63-e3431a759acc"
+  "git-projects":
+    openInDevMode: false
+    rootPath: "~/Projects"
+    showGitInfo: false
+  tabs:
+    usePreviewTabs: true
+  welcome:
+    showOnStartup: false

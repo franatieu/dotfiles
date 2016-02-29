@@ -45,28 +45,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking sublime preferences..."
-sleep 1
-if [ ! -d /Applications/Sublime\ Text.app ]; then
-  echo -e "${RED}Sublime text 3 is not installed${NC}"
-else
-  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  ln -s ~/dotfiles/.preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-
-  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/PHP.sublime-settings
-  ln -s ~/dotfiles/.PHP.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/PHP.sublime-settings
-
-  rm -R ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
-  ln -s ~/dotfiles/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
-  echo -e "${GREEN}Sublime Text 3 preferences link done${NC}"
-
-  if [ ! -f /usr/local/bin/subl ]; then
-    ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-    echo -e "${GREEN}command line «subl» done${NC}"
-  fi
-fi
-
-echo -e "..."
 echo -e "Checking php..."
 sleep 1
 LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | sed -n 2p)
@@ -117,6 +95,25 @@ else
     echo -e "======================================================================"
     echo -e "${GREEN}Composer installation done${NC}"
   fi
+fi
+
+echo -e "..."
+echo -e "Checking Atom preferences..."
+sleep 1
+if [ ! -d /Applications/Atom.app ]; then
+  echo -e "${RED}Atom is not installed${NC}"
+else
+  rm -rf ~/.atom
+  ln -s ~/dotfiles/.atom ~/.atom
+  echo -e "${GREEN}Atom configurations aliases done${NC}"
+
+  sleep 1
+
+  echo -e "Installing Atom packages..."
+  while read p; do
+    apm install $p
+  done < ~/.atom/packages.txt
+  echo -e "${GREEN}Atom packages installation done${NC}"
 fi
 
 echo -e "..."
