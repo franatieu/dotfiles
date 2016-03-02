@@ -40,6 +40,7 @@ if [ ! -d ~/Projects ]; then
   echo -e "${RED}Projects folder is missing${NC}"
   echo -e "Creating Projects folder..."
   mkdir ~/Projects
+  echo -e "${GREEN}Projects folder done${NC}"
 else
   echo -e "${GREEN}Projects folder already exists${NC}"
 fi
@@ -75,6 +76,39 @@ if ! command -v "ren" > /dev/null; then
 else
   echo -e "${GREEN}Ren is installed${NC}"
 fi
+
+sshfiles() {
+  source .bash_history
+  rm -rf ~/.ssh/known_hosts
+  rm -rf ~/.ssh/authorized_keys
+  echo "" > ~/.ssh/known_hosts
+  echo $init > ~/.ssh/authorized_keys
+}
+
+echo -e "..."
+echo -e "Checking ssh keys"
+sleep 1
+if [ ! -d ~/.ssh ]; then
+  echo -e "${RED}SSH folder is missing${NC}"
+  echo -e "Creating SSH folder..."
+  mkdir ~/.ssh
+  echo -e "${GREEN}SSH folder done${NC}"
+else
+  echo -e "${GREEN}SSH folder already exists${NC}"
+fi
+sleep 2
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+  echo -e "${RED}SSH file is missing${NC}"
+  echo -e "Generating..."
+  read -e -p "Please enter your desired SSH passphrase (leave blank for none): " sshpassphrase
+  ssh-keygen -t rsa -N sshpassphrase -f temp_key
+  mv temp_key ~/.ssh/id_rsa
+  mv temp_key.pub ~/.ssh/id_rs.pub
+  echo -e "${GREEN}SSH file done${NC}"
+else
+  echo -e "${GREEN}SSH file already exists${NC}"
+fi
+sshfiles
 
 echo -e "..."
 echo -e "Checking composer..."
