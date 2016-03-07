@@ -2,7 +2,7 @@
 # Same PATH
 # ---------------------------------------------------------------------
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:~/bin:~/.composer/vendor/bin:$PATH
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=~/Casks"
 
 # ---------------------------------------------------------------------
 # Git aliases
@@ -65,7 +65,7 @@ alias gdc='git diff --cached'
 # Other aliases
 # ---------------------------------------------------------------------
 alias sourcebash='source ~/.bash_profile'
-alias editbash='sudo nano ~/.bash_profile'
+alias editbash='nano ~/.bash_profile'
 alias dotfiles='cd ~/dotfiles'
 alias projects='cd ~/projects/'
 alias ..='cd ..'
@@ -81,8 +81,8 @@ alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 alias composer='composer'
 alias composerinstall='composer install --prefer-dist'
-alias nano='sudo nano'
-alias npm='sudo npm'
+alias nano='nano'
+alias npm='npm'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 alias tower='gittower'

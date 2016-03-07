@@ -1,7 +1,0 @@
-[
-  {
-    "keys": ["alt+space"],
-    "command": "insert_snippet",
-    "args": {"contents": " "}
-  }
-]

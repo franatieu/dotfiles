@@ -3,6 +3,8 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
+source src/functions
+
 echo -e "..."
 echo -e "Checking finder showing hidden files..."
 defaults write com.apple.finder AppleShowAllFiles YES
@@ -17,15 +19,19 @@ echo -e "${GREEN}.bash_profile link done${NC}"
 echo -e "..."
 echo -e "Checking .gitconfig..."
 sleep 1
-rm -rf ~/dotfiles/.gitconfig
-rm -rf ~/.gitconfig
-cp .gitconfig_default .gitconfig
-read -e -p "Please enter your desired git name: " GITNAME
-read -e -p "Please enter your git email: " GITEMAIL
-while read a ; do echo ${a//:name/$GITNAME} ; done < .gitconfig > .gitconfig.t ; mv .gitconfig{.t,}
-while read a ; do echo ${a//:email/$GITEMAIL} ; done < .gitconfig > .gitconfig.t ; mv .gitconfig{.t,}
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig;
-echo -e "${GREEN}.gitconfig link done${NC}"
+if [ ! -f ~/dotfiles/.gitconfig ]; then
+  echo -e "${RED}.gitconfig is missing${NC}"
+  echo -e "Creating .gitconfig..."
+  creategitconfig
+else
+  read -e -p "Do you want to overwrite your .gitconfig ? (leave blank for yes) " OVERWRITEGIT
+  if [ -z "$OVERWRITEGIT" ]; then
+    echo -e "Recreating .gitconfig..."
+    creategitconfig
+  else
+    echo -e "${GREEN}.gitconfig skipped${NC}"
+  fi
+fi
 
 echo -e "..."
 echo -e "Checking .bashrc..."
@@ -77,13 +83,47 @@ else
   echo -e "${GREEN}Ren is installed${NC}"
 fi
 
-sshfiles() {
-  source .bash_history
-  rm -rf ~/.ssh/known_hosts
-  rm -rf ~/.ssh/authorized_keys
-  echo "" > ~/.ssh/known_hosts
-  echo $init > ~/.ssh/authorized_keys
-}
+echo -e "..."
+echo -e "Checking brew..."
+sleep 1
+if ! command -v "brew" > /dev/null; then
+  echo -e "${RED}Brew is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo -e "====================================================================="
+  echo -e "${GREEN}Brew installation done${NC}"
+else
+  echo -e "${GREEN}Brew already installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking cask..."
+sleep 1
+if ! brew info cask &>/dev/null; then
+  echo -e "${RED}Cask is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew tap caskroom/cask
+  echo -e "====================================================================="
+  echo -e "${GREEN}Cask installation done${NC}"
+else
+  echo -e "${GREEN}Cask already installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Atom..."
+sleep 1
+if [ ! -e /Applications/Atom.app ]; then
+  echo -e "${RED}Atom is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install atom
+  echo -e "====================================================================="
+  echo -e "${GREEN}Atom installation done${NC}"
+else
+  echo -e "${GREEN}Atom is installed${NC}"
+fi
 
 echo -e "..."
 echo -e "Checking ssh keys"
@@ -115,20 +155,246 @@ echo -e "Checking composer..."
 sleep 1
 if ! command -v "composer" > /dev/null; then
   echo -e "${RED}Composer is not installed${NC}"
-  echo -e "======================================================================"
+  echo -e "====================================================================="
   curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-  echo -e "======================================================================"
+  echo -e "====================================================================="
   echo -e "${GREEN}Composer installation done${NC}"
 else
   echo -e "${GREEN}Composer is installed${NC}"
   if [ ! -f /usr/local/bin/composer ]; then
     echo -e "${RED}Composer is installed as root and shouldn't be${NC}"
-    echo -e "======================================================================"
+    echo -e "====================================================================="
     sleep 1
     curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-    echo -e "======================================================================"
+    echo -e "====================================================================="
     echo -e "${GREEN}Composer installation done${NC}"
   fi
+fi
+
+echo -e "..."
+echo -e "Checking Google Chrome..."
+sleep 1
+if [ ! -e /Applications/Google\ Chrome.app ]; then
+  echo -e "${RED}Google Chrome is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install google-chrome
+  echo -e "====================================================================="
+  echo -e "${GREEN}Google Chrome installation done${NC}"
+else
+  echo -e "${GREEN}Google Chrome is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Firefox..."
+sleep 1
+if [ ! -e /Applications/Firefox.app ]; then
+  echo -e "${RED}Firefox is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install firefox
+  echo -e "====================================================================="
+  echo -e "${GREEN}Firefox installation done${NC}"
+else
+  echo -e "${GREEN}Firefox is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking AppCleaner..."
+sleep 1
+if [ ! -e /Applications/AppCleaner.app ]; then
+  echo -e "${RED}AppCleaner is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install appcleaner
+  echo -e "====================================================================="
+  echo -e "${GREEN}AppCleaner installation done${NC}"
+else
+  echo -e "${GREEN}AppCleaner is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking SizeUp..."
+sleep 1
+if [ ! -e /Applications/SizeUp.app ]; then
+  echo -e "${RED}SizeUp is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install sizeup
+  echo -e "====================================================================="
+  echo -e "${GREEN}SizeUp installation done${NC}"
+else
+  echo -e "${GREEN}SizeUp is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking ImageOptim..."
+sleep 1
+if [ ! -e /Applications/ImageOptim.app ]; then
+  echo -e "${RED}ImageOptim is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install imageoptim
+  echo -e "====================================================================="
+  echo -e "${GREEN}ImageOptim installation done${NC}"
+else
+  echo -e "${GREEN}ImageOptim is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Spotify..."
+sleep 1
+if [ ! -e /Applications/Spotify.app ]; then
+  echo -e "${RED}Spotify is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install spotify
+  echo -e "====================================================================="
+  echo -e "${GREEN}Spotify installation done${NC}"
+else
+  echo -e "${GREEN}Spotify is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Teamviewer..."
+sleep 1
+if [ ! -e /Applications/Teamviewer.app ]; then
+  echo -e "${RED}Teamviewer is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install teamviewer
+  echo -e "====================================================================="
+  echo -e "${GREEN}Teamviewer installation done${NC}"
+else
+  echo -e "${GREEN}Teamviewer is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking The Unarchiver..."
+sleep 1
+if [ ! -e /Applications/The\ Unarchiver.app ]; then
+  echo -e "${RED}The Unarchiver is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install the-unarchiver
+  echo -e "====================================================================="
+  echo -e "${GREEN}The Unarchiver installation done${NC}"
+else
+  echo -e "${GREEN}The Unarchiver is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking VLC..."
+sleep 1
+if [ ! -e /Applications/VLC.app ]; then
+  echo -e "${RED}VLC is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install vlc
+  echo -e "====================================================================="
+  echo -e "${GREEN}VLC installation done${NC}"
+else
+  echo -e "${GREEN}VLC is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Steam..."
+sleep 1
+if [ ! -e /Applications/Steam.app ]; then
+  echo -e "${RED}Steam is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install steam
+  echo -e "====================================================================="
+  echo -e "${GREEN}Steam installation done${NC}"
+else
+  echo -e "${GREEN}Steam is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Battle.net..."
+sleep 1
+if [ ! -e /Applications/Battle.net.app ]; then
+  echo -e "${RED}Battle.net is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install battle-net
+  open ~/Casks/battle-net/latest/Battle.net-Setup.app
+  echo -e "====================================================================="
+  echo -e "${GREEN}Battle.net installation done${NC}"
+else
+  echo -e "${GREEN}Battle.net is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Filezilla..."
+sleep 1
+if [ ! -e /Applications/Filezilla.app ]; then
+  echo -e "${RED}Filezilla is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install filezilla
+  echo -e "====================================================================="
+  echo -e "${GREEN}Filezilla installation done${NC}"
+else
+  echo -e "${GREEN}Filezilla is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Sequel Pro..."
+sleep 1
+if [ ! -e /Applications/Sequel\ Pro.app ]; then
+  echo -e "${RED}Sequel Pro is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install sequel-pro
+  echo -e "====================================================================="
+  echo -e "${GREEN}Sequel Pro installation done${NC}"
+else
+  echo -e "${GREEN}Sequel Pro is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Adobe Reader..."
+sleep 1
+if [ ! -e /Applications/Adobe\ Acrobat\ Reader\ DC.app ]; then
+  echo -e "${RED}Adobe Reader is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install adobe-reader
+  echo -e "====================================================================="
+  echo -e "${GREEN}Adobe Reader installation done${NC}"
+else
+  echo -e "${GREEN}Adobe Reader is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Handbrake..."
+sleep 1
+if [ ! -e /Applications/handbrake.app ]; then
+  echo -e "${RED}Handbrake is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install handbrake
+  echo -e "====================================================================="
+  echo -e "${GREEN}Handbrake installation done${NC}"
+else
+  echo -e "${GREEN}Handbrake is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking uTorrent..."
+sleep 1
+if [ ! -e /Applications/uTorrent.app ]; then
+  echo -e "${RED}uTorrent is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install utorrent
+  open ~/Casks/utorrent/latest/uTorrent.app
+  echo -e "====================================================================="
+  echo -e "${GREEN}uTorrent installation done${NC}"
+else
+  echo -e "${GREEN}uTorrent is installed${NC}"
 fi
 
 echo -e "..."
@@ -140,159 +406,10 @@ else
   rm -rf ~/.atom
   ln -s ~/dotfiles/.atom ~/.atom
   echo -e "${GREEN}Atom configurations aliases done${NC}"
-
-  sleep 1
-
-  echo -e "Installing Atom packages..."
+  sleep 2
+  echo -e "Installing/updating Atom packages..."
   while read p; do
     apm install $p
   done < ~/.atom/packages.txt
   echo -e "${GREEN}Atom packages installation done${NC}"
 fi
-
-echo -e "..."
-#sudo chown -R $(whoami)
-# echo -e "..."
-# if [ ! -f ~/.ssh/id_rsa.pub ]; then
-#  echo -e "No SSH key found."
-#  echo -e "Generating..."
-#  echo -e "Please enter your email address:"
-#  read -e GITEMAIL
-#  ssh-keygen -t rsa -C $GITEMAIL
-#  echo -e "."
-# else
-#  echo -e "SSH key found"
-# fi
-
-# echo -e "..."
-# if ! command -v "rvm" >/dev/null; then
-#   echo -e "rvm is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   \curl -sSL https://get.rvm.io | bash -s stable --ruby
-#   echo -e "."
-# else
-#   echo -e "rvm is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "brew" > /dev/null; then
-#   echo -e "Homebrew is not installed"
-#   echo -e "Installing..."
-#   echo -e "."
-#   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#   echo -e "."
-# else
-#   echo -e "Homebrew is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "wget" > /dev/null; then
-#   echo -e "wget is not installed"
-#   echo -e "Installing..."
-#   echo -e "."
-#   brew install wget
-#   echo -e "."
-# else
-#   echo -e "wget is installed"
-# fi
-
-# echo -e "..."
-# if command -v "brew cask" >/dev/null 2>&1; then
-#   echo -e "Homebrew cask is not installed"
-#   echo -e "Installing..."
-#   echo -e "."
-#   brew install caskroom/cask/brew-cask
-#   echo -e "."
-# else
-#   echo -e "Homebrew cask is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "bower" > /dev/null; then
-#   echo -e "Bower not installed"
-#   echo -e "Installing..."
-#   echo -e "."
-#   sudo npm install -g bower
-#   echo -e "."
-# else
-#     echo -e "Bower is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "bower-installer" >/dev/null; then
-#   echo -e "bower-installer is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo npm install -g bower-installer
-#   echo -e "."
-# else
-#   echo -e "bower-installer is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "mongod" >/dev/null; then
-#   echo -e "mongodb is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   brew install mongodb
-#   sudo mkdir -p /data/db
-#   echo -e "."
-# else
-#   echo -e "mongod is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "gulp" >/dev/null; then
-#   echo -e "gulp is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo npm install --global gulp
-#   echo -e "."
-# else
-#   echo -e "gulp is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "nodemon" >/dev/null; then
-#   echo -e "nodemon is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo npm install -g nodemon
-#   echo -e "."
-# else
-#   echo -e "nodemon is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "sass" >/dev/null; then
-#   echo -e "sass is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo gem install sass
-#   echo -e "."
-# else
-#   echo -e "sass is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "bundler" >/dev/null; then
-#   echo -e "bundler is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo gem install bundler
-#   echo -e "."
-# else
-#   echo -e "bundler is installed"
-# fi
-
-# echo -e "..."
-# if ! command -v "middleman" >/dev/null; then
-#   echo -e "middleman is not installed"
-#   echo -e "installing..."
-#   echo -e "."
-#   sudo gem install middleman
-#   echo -e "."
-# else
-#   echo -e "middleman is installed"
-# fi
