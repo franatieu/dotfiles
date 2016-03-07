@@ -13,30 +13,33 @@ echo -e "${GREEN}Showing hidden files done${NC}"
 echo -e "..."
 echo -e "Checking .bash_profile..."
 sleep 1
-ln -sf ~/dotfiles/.bash_profile ~/.bash_profile;
+ln -sf ~/dotfiles/src/.bash_profile ~/.bash_profile;
 echo -e "${GREEN}.bash_profile link done${NC}"
 
 echo -e "..."
 echo -e "Checking .gitconfig..."
 sleep 1
-if [ ! -f ~/dotfiles/.gitconfig ]; then
+if [ ! -f ~/dotfiles/src/.gitconfig ]; then
   echo -e "${RED}.gitconfig is missing${NC}"
   echo -e "Creating .gitconfig..."
   creategitconfig
 else
-  read -e -p "Do you want to overwrite your .gitconfig ? (leave blank for yes) " OVERWRITEGIT
-  if [ -z "$OVERWRITEGIT" ]; then
-    echo -e "Recreating .gitconfig..."
-    creategitconfig
-  else
-    echo -e "${GREEN}.gitconfig skipped${NC}"
-  fi
+  read -r -p "Do you want to overwrite your .gitconfig? [y/N] " OVERWRITEGIT
+  case $OVERWRITEGIT in
+    [yY][eE][sS]|[yY])
+      echo -e "Recreating .gitconfig..."
+      creategitconfig
+      ;;
+    *)
+      echo -e "${GREEN}.gitconfig skipped${NC}"
+      ;;
+  esac
 fi
 
 echo -e "..."
 echo -e "Checking .bashrc..."
 sleep 1
-ln -sf ~/dotfiles/.bashrc ~/.bashrc;
+ln -sf ~/dotfiles/src/.bashrc ~/.bashrc;
 echo -e "${GREEN}.bashrc link done${NC}"
 
 echo -e "..."
@@ -254,6 +257,28 @@ if [ ! -e /Applications/Spotify.app ]; then
 else
   echo -e "${GREEN}Spotify is installed${NC}"
 fi
+
+echo -e "..."
+echo -e "Checking Slack..."
+sleep 1
+read -r -p "Do you want to install Slack? [y/N] " INSTALLSLACK
+case $INSTALLSLACK in
+  [yY][eE][sS]|[yY])
+    if [ ! -e /Applications/Slack.app ]; then
+      echo -e "${RED}Slack is not installed${NC}"
+      echo -e "Installing..."
+      echo -e "====================================================================="
+      brew cask install slack
+      echo -e "====================================================================="
+      echo -e "${GREEN}Slack installation done${NC}"
+    else
+      echo -e "${GREEN}Slack is installed${NC}"
+    fi
+    ;;
+  *)
+    echo -e "${GREEN}Slack skipped${NC}"
+    ;;
+esac
 
 echo -e "..."
 echo -e "Checking Teamviewer..."
