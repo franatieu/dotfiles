@@ -57,7 +57,7 @@ fi
 echo -e "..."
 echo -e "Checking php..."
 sleep 1
-LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | sed -n 2p)
+LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | sed -n 1p)
 if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
   echo -e "${RED}MAMP Pro is not installed${NC}"
 else
@@ -98,6 +98,37 @@ if ! command -v "brew" > /dev/null; then
   echo -e "${GREEN}Brew installation done${NC}"
 else
   echo -e "${GREEN}Brew already installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking wget..."
+sleep 1
+if ! command -v "wget" > /dev/null; then
+  echo -e "${RED}wget is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install wget
+  echo -e "====================================================================="
+  echo -e "${GREEN}wget installation done${NC}"
+else
+  echo -e "${GREEN}wget already installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking phpunit..."
+sleep 1
+if ! command -v "phpunit" > /dev/null; then
+  echo -e "${RED}phpunit is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  rm -rf /usr/local/bin/phpunit
+  wget https://phar.phpunit.de/phpunit.phar
+  chmod +x phpunit.phar
+  mv phpunit.phar /usr/local/bin/phpunit
+  echo -e "====================================================================="
+  echo -e "${GREEN}phpunit installation done${NC}"
+else
+  echo -e "${GREEN}phpunit already installed${NC}"
 fi
 
 echo -e "..."
