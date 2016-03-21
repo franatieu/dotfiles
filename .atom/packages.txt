@@ -8,4 +8,6 @@ mechanical-keyboard-1
 minimap
 php-twig
 simple-drag-drop-text
+figlet
+pigments
 goto-definition
