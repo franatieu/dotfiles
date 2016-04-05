@@ -8,6 +8,7 @@ git-projects
 goto-definition
 highlight-selected
 jquery-snippets
+language-asp
 mechanical-keyboard-1
 minimap
 php-twig

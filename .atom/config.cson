@@ -38,3 +38,9 @@
     usePreviewTabs: true
   welcome:
     showOnStartup: false
+".asp.html.text":
+  editor:
+    normalizeIndentOnPaste: "false"
+".asp.source":
+  editor:
+    normalizeIndentOnPaste: "false"
