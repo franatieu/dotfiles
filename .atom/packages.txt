@@ -1,13 +1,15 @@
 atom-autocomplete-php
+atom-beautify
+SFTP-deployment
 docblockr
 emmet
+figlet
 git-projects
+goto-definition
 highlight-selected
 jquery-snippets
 mechanical-keyboard-1
 minimap
 php-twig
 simple-drag-drop-text
-figlet
 pigments
-goto-definition

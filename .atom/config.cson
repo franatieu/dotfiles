@@ -1,4 +1,5 @@
 "*":
+  "SFTP-deployment": {}
   core:
     disabledPackages: [
       "mechanical-keyboard-1"
@@ -25,6 +26,7 @@
     invisibles: {}
     normalizeIndentOnPaste: false
     softWrap: true
+    tabType: "soft"
   "exception-reporting":
     userId: "2285706d-2655-d574-7a63-e3431a759acc"
   "git-projects":
