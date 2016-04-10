@@ -439,6 +439,21 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking ExpressVPN..."
+sleep 1
+if [ ! -e /Applications/ExpressVPN.app ]; then
+  echo -e "${RED}ExpressVPN is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install expressvpn
+  echo -e "====================================================================="
+  echo -e "${GREEN}ExpressVPN installation done${NC}"
+else
+  echo -e "${GREEN}ExpressVPN is installed${NC}"
+fi
+fi
+
+echo -e "..."
 echo -e "Checking uTorrent..."
 sleep 1
 if [ ! -e /Applications/uTorrent.app ]; then
