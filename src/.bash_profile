@@ -41,8 +41,8 @@ alias gpu='git push -u'
 alias gpuo='git push -u origin'
 alias gphdm='git push heroku dev:master'
 alias gphm='git push heroku master'
-alias gpldm='git push live dev:master'
 alias gplm='git push live master'
+alias gpa='git push --all origin'
 # branch
 alias gch="git checkout"
 alias gchb="git checkout -b"
