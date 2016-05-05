@@ -16,25 +16,31 @@ alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grh='git reset --hard'
 alias ggc='git gc'
+
 # add
 alias ga='git add'
 alias gaa='git add -A .'
+
 # commit
 alias gc='git add -A; git commit -a;'
 alias gcm='git commit -m'
+
 # merge
 alias gcp='git cherry-pick'
 alias gm="git merge --no-ff"
 alias gass='git update-index --assume-unchanged'
 alias gassu='git update-index --no-assume-unchanged'
 alias gassl='!git ls-files -v | grep ^h | cut -c 3-'
+
 # log
 alias gl='git log --abbrev-commit;'
 alias grl='git reflog;'
+
 # submodule
 alias gsi='git submodule init; git submodule update'
 alias gsu='git submodule sync; git submodule update'
 alias gss='git submodule sync'
+
 # push
 alias gp='git push;'
 alias gpu='git push -u'
@@ -43,20 +49,24 @@ alias gphdm='git push heroku dev:master'
 alias gphm='git push heroku master'
 alias gplm='git push live master'
 alias gpa='git push --all origin'
+
 # branch
 alias gch="git checkout"
 alias gchb="git checkout -b"
 alias gb="git branch"
 alias gba='git branch -a'
 alias gbd='git branch -D'
+
 # stash
 alias gsh='git stash'
 alias gshp='git stash pop'
+
 # tags
 alias gpt='git push origin --tags'
 alias gt='git tag'
 alias gts='git tag show'
 alias gta='git tag -a'
+
 # diff
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -79,8 +89,10 @@ alias flushdns=' dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-alias composer='composer'
 alias composerinstall='composer install --prefer-dist'
+alias ci='composer install'
+alias cu='composer update'
+alias cda='composer dump-autoload'
 alias nano='nano'
 alias npm='npm'
 alias sleepnow='pmset sleepnow'
