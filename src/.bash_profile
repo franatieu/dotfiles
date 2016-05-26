@@ -116,7 +116,13 @@ php_server() {
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+gtu() {
+  read -e -p "Please enter the old tag name: " TAGOLD
+  read -e -p "Please enter the new tag name: " TAGNEW
 
+  git push origin $TAGOLD:$TAGNEW :$TAGOLD && git tag -d $TAGOLD
+  gf
+}
 # ---------------------------------------------------------------------
 # Source local machine config
 # ---------------------------------------------------------------------
