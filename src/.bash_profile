@@ -123,6 +123,12 @@ gtu() {
   git push origin $TAGOLD:$TAGNEW :$TAGOLD && git tag -d $TAGOLD
   gf
 }
+gtd() {
+  read -e -p "Please enter the tag name to delete: " TAGNAME
+
+  git tag -d $TAGNAME
+  git push origin :refs/tags/$TAGNAME
+}
 # ---------------------------------------------------------------------
 # Source local machine config
 # ---------------------------------------------------------------------
