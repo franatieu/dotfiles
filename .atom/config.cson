@@ -1,8 +1,13 @@
 "*":
   "SFTP-deployment": {}
   core:
+    allowPendingPaneItems: false
     disabledPackages: [
       "mechanical-keyboard-1"
+      "markdown-preview"
+      "archive-view"
+      "status-bar"
+      "metrics"
     ]
     ignoredNames: [
       ".git"

@@ -129,6 +129,12 @@ gtd() {
   git tag -d $TAGNAME
   git push origin :refs/tags/$TAGNAME
 }
+gbD() {
+  read -e -p "Please enter the branch name to delete: " BNAME
+
+  git branch -D $BNAME
+  git push origin --delete $BNAME
+}
 # ---------------------------------------------------------------------
 # Source local machine config
 # ---------------------------------------------------------------------
