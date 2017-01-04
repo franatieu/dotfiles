@@ -200,7 +200,7 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
   read -e -p "Please enter your desired SSH passphrase (leave blank for none): " sshpassphrase
   ssh-keygen -t rsa -N sshpassphrase -f temp_key
   mv temp_key ~/.ssh/id_rsa
-  mv temp_key.pub ~/.ssh/id_rs.pub
+  mv temp_key.pub ~/.ssh/id_rsa.pub
   echo -e "${GREEN}SSH file done${NC}"
 else
   echo -e "${GREEN}SSH file already exists${NC}"
