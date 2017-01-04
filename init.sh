@@ -153,11 +153,34 @@ if [ ! -e /Applications/Atom.app ]; then
   echo -e "Installing..."
   echo -e "====================================================================="
   brew cask install atom
+  ln -sf ~/dotfiles/.atom/config.cson ~/.atom/config.cson
+  ln -sf ~/dotfiles/.atom/init.coffee ~/.atom/init.coffee
+  ln -sf ~/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
+  ln -sf ~/dotfiles/.atom/snippets.cson ~/.atom/snippets.cson
+  ln -sf ~/dotfiles/.atom/projects.cson ~/.atom/projects.cson
+  ln -sf ~/dotfiles/.atom/styles.less ~/.atom/styles.less
   echo -e "====================================================================="
   echo -e "${GREEN}Atom installation done${NC}"
 else
   echo -e "${GREEN}Atom is installed${NC}"
 fi
+
+echo -e "..."
+echo -e "Checking Atom configurations..."
+sleep 1
+echo -e "Configuring..."
+echo -e "====================================================================="
+ln -sf ~/dotfiles/.atom/config.cson ~/.atom/config.cson
+ln -sf ~/dotfiles/.atom/init.coffee ~/.atom/init.coffee
+ln -sf ~/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
+ln -sf ~/dotfiles/.atom/snippets.cson ~/.atom/snippets.cson
+ln -sf ~/dotfiles/.atom/projects.cson ~/.atom/projects.cson
+ln -sf ~/dotfiles/.atom/styles.less ~/.atom/styles.less
+while read p; do
+  apm install $p
+done < ~/dotfiles/.atom/packages.txt
+echo -e "====================================================================="
+echo -e "${GREEN}Atom configuration done${NC}"
 
 echo -e "..."
 echo -e "Checking ssh keys"
@@ -288,28 +311,6 @@ if [ ! -e /Applications/Spotify.app ]; then
 else
   echo -e "${GREEN}Spotify is installed${NC}"
 fi
-
-echo -e "..."
-echo -e "Checking Slack..."
-sleep 1
-read -r -p "Do you want to install Slack? [y/N] " INSTALLSLACK
-case $INSTALLSLACK in
-  [yY][eE][sS]|[yY])
-    if [ ! -e /Applications/Slack.app ]; then
-      echo -e "${RED}Slack is not installed${NC}"
-      echo -e "Installing..."
-      echo -e "====================================================================="
-      brew cask install slack
-      echo -e "====================================================================="
-      echo -e "${GREEN}Slack installation done${NC}"
-    else
-      echo -e "${GREEN}Slack is installed${NC}"
-    fi
-    ;;
-  *)
-    echo -e "${GREEN}Slack skipped${NC}"
-    ;;
-esac
 
 echo -e "..."
 echo -e "Checking Teamviewer..."
