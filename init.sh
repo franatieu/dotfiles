@@ -101,6 +101,34 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking node and npm..."
+sleep 1
+if ! command -v "npm" > /dev/null; then
+  echo -e "${RED}Node is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install node
+  echo -e "====================================================================="
+  echo -e "${GREEN}Node installation done${NC}"
+else
+  echo -e "${GREEN}Node already installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking gulp..."
+sleep 1
+if ! command -v "gulp" > /dev/null; then
+  echo -e "${RED}Gulp is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  npm install gulp-cli -g
+  echo -e "====================================================================="
+  echo -e "${GREEN}Gulp installation done${NC}"
+else
+  echo -e "${GREEN}Gulp already installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking wget..."
 sleep 1
 if ! command -v "wget" > /dev/null; then
