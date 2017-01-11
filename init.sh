@@ -129,6 +129,20 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking ghostscript..."
+sleep 1
+if ! command -v "ghostscript" > /dev/null; then
+  echo -e "${RED}Ghostscript is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install ghostscript
+  echo -e "====================================================================="
+  echo -e "${GREEN}Ghostcript installation done${NC}"
+else
+  echo -e "${GREEN}Ghostcript already installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking wget..."
 sleep 1
 if ! command -v "wget" > /dev/null; then

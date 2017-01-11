@@ -74,6 +74,7 @@ alias gdc='git diff --cached'
 # ---------------------------------------------------------------------
 # Other aliases
 # ---------------------------------------------------------------------
+alias ghostscript='/usr/local/bin/gs'
 alias sourcebash='source ~/.bash_profile'
 alias editbash='nano ~/.bash_profile'
 alias dotfiles='cd ~/dotfiles'
