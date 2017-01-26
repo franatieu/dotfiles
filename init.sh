@@ -227,6 +227,22 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking mongodb..."
+sleep 1
+if ! command -v "mongo" > /dev/null; then
+  echo -e "${RED}Mongodb is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install mongodb
+  sudo mkdir -p /data/db
+  sudo chown $USER /data/db
+  echo -e "====================================================================="
+  echo -e "${GREEN}Mongodb installation done${NC}"
+else
+  echo -e "${GREEN}Mongodb already installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking Atom..."
 sleep 1
 if [ ! -e /Applications/Atom.app ]; then
