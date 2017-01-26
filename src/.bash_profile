@@ -111,8 +111,10 @@ sass_example() {
 php_server() {
   PHP=$(which php)
   HOST=localhost
-  read -e -p "Port:" -i "5000" PORT
-  read -e -p "Root:" -i $PWD DOCROOT
+  read -e -p "Port:" PORT
+  PORT=${PORT:-5000}
+  read -e -p "Root:" DOCROOT
+  DOCROOT=${DOCROOT:-$PWD}
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
 parse_git_branch() {

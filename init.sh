@@ -157,6 +157,17 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking bash version..."
+sleep 1
+echo -e "${RED}Cannot verify bash version${NC}"
+echo -e "Updating..."
+echo -e "====================================================================="
+brew install bash
+chsh -s /usr/local/bin/bash
+echo -e "====================================================================="
+echo -e "${GREEN}Bash update done${NC}"
+
+echo -e "..."
 echo -e "Checking ghostscript..."
 sleep 1
 if ! command -v "ghostscript" > /dev/null; then
