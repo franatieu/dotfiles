@@ -326,6 +326,20 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking Flux..."
+sleep 1
+if [ ! -e /Applications/Flux.app ]; then
+  echo -e "${RED}Flux is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install flux
+  echo -e "====================================================================="
+  echo -e "${GREEN}Flux installation done${NC}"
+else
+  echo -e "${GREEN}Flux is installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking Google Chrome..."
 sleep 1
 if [ ! -e /Applications/Google\ Chrome.app ]; then
