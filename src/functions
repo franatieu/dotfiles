@@ -24,5 +24,6 @@ sublimeConfig() {
   fi
   
   ln -sf ~/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+  ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
   echo -e "${GREEN}.Sublime text config link done${NC}"
 }
