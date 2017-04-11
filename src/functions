@@ -17,3 +17,12 @@ creategitconfig() {
   ln -sf ~/dotfiles/src/.gitconfig ~/.gitconfig;
   echo -e "${GREEN}.gitconfig link done${NC}"
 }
+
+sublimeConfig() {
+  if [ ! -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]; then
+    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+  fi
+  
+  ln -sf ~/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+  echo -e "${GREEN}.Sublime text config link done${NC}"
+}

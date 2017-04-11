@@ -6,7 +6,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/git/bin:~/bin:~/.composer/vendor/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/git/bin:~/bin:~/.composer/vendor/bin:/Applications/MAMP/Library/bin/:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=~/Casks"
 
 # ---------------------------------------------------------------------

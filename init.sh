@@ -243,43 +243,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking Atom..."
-sleep 1
-if [ ! -e /Applications/Atom.app ]; then
-  echo -e "${RED}Atom is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install atom
-  ln -sf ~/dotfiles/.atom/config.cson ~/.atom/config.cson
-  ln -sf ~/dotfiles/.atom/init.coffee ~/.atom/init.coffee
-  ln -sf ~/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
-  ln -sf ~/dotfiles/.atom/snippets.cson ~/.atom/snippets.cson
-  ln -sf ~/dotfiles/.atom/projects.cson ~/.atom/projects.cson
-  ln -sf ~/dotfiles/.atom/styles.less ~/.atom/styles.less
-  echo -e "====================================================================="
-  echo -e "${GREEN}Atom installation done${NC}"
-else
-  echo -e "${GREEN}Atom is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Atom configurations..."
-sleep 1
-echo -e "Configuring..."
-echo -e "====================================================================="
-ln -sf ~/dotfiles/.atom/config.cson ~/.atom/config.cson
-ln -sf ~/dotfiles/.atom/init.coffee ~/.atom/init.coffee
-ln -sf ~/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
-ln -sf ~/dotfiles/.atom/snippets.cson ~/.atom/snippets.cson
-ln -sf ~/dotfiles/.atom/projects.cson ~/.atom/projects.cson
-ln -sf ~/dotfiles/.atom/styles.less ~/.atom/styles.less
-while read p; do
-  apm install $p
-done < ~/dotfiles/.atom/packages.txt
-echo -e "====================================================================="
-echo -e "${GREEN}Atom configuration done${NC}"
-
-echo -e "..."
 echo -e "Checking ssh keys"
 sleep 1
 if [ ! -d ~/.ssh ]; then
@@ -323,6 +286,22 @@ else
     echo -e "====================================================================="
     echo -e "${GREEN}Composer installation done${NC}"
   fi
+fi
+
+echo -e "..."
+echo -e "Checking Sublime Text..."
+sleep 1
+if [ ! -e /Applications/Sublime\ Text.app ]; then
+  echo -e "${RED}Sublime Text is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew cask install sublime-text
+  sublimeConfig
+  echo -e "====================================================================="
+  echo -e "${GREEN}Sublime Text installation done${NC}"
+else
+  sublimeConfig
+  echo -e "${GREEN}Sublime Text is installed${NC}"
 fi
 
 echo -e "..."
