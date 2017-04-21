@@ -530,21 +530,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking ExpressVPN..."
-sleep 1
-if [ ! -e /Applications/ExpressVPN.app ]; then
-  echo -e "${RED}ExpressVPN is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install expressvpn
-  echo -e "====================================================================="
-  echo -e "${GREEN}ExpressVPN installation done${NC}"
-else
-  echo -e "${GREEN}ExpressVPN is installed${NC}"
-fi
-fi
-
-echo -e "..."
 echo -e "Checking uTorrent..."
 sleep 1
 if [ ! -e /Applications/uTorrent.app ]; then
@@ -557,21 +542,4 @@ if [ ! -e /Applications/uTorrent.app ]; then
   echo -e "${GREEN}uTorrent installation done${NC}"
 else
   echo -e "${GREEN}uTorrent is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Atom preferences..."
-sleep 1
-if [ ! -d /Applications/Atom.app ]; then
-  echo -e "${RED}Atom is not installed${NC}"
-else
-  rm -rf ~/.atom
-  ln -s ~/dotfiles/.atom ~/.atom
-  echo -e "${GREEN}Atom configurations aliases done${NC}"
-  sleep 2
-  echo -e "Installing/updating Atom packages..."
-  while read p; do
-    apm install $p
-  done < ~/.atom/packages.txt
-  echo -e "${GREEN}Atom packages installation done${NC}"
 fi
