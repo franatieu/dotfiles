@@ -305,48 +305,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking Flux..."
-sleep 1
-if [ ! -e /Applications/Flux.app ]; then
-  echo -e "${RED}Flux is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install flux
-  echo -e "====================================================================="
-  echo -e "${GREEN}Flux installation done${NC}"
-else
-  echo -e "${GREEN}Flux is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Google Chrome..."
-sleep 1
-if [ ! -e /Applications/Google\ Chrome.app ]; then
-  echo -e "${RED}Google Chrome is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install google-chrome
-  echo -e "====================================================================="
-  echo -e "${GREEN}Google Chrome installation done${NC}"
-else
-  echo -e "${GREEN}Google Chrome is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Firefox..."
-sleep 1
-if [ ! -e /Applications/Firefox.app ]; then
-  echo -e "${RED}Firefox is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install firefox
-  echo -e "====================================================================="
-  echo -e "${GREEN}Firefox installation done${NC}"
-else
-  echo -e "${GREEN}Firefox is installed${NC}"
-fi
-
-echo -e "..."
 echo -e "Checking AppCleaner..."
 sleep 1
 if [ ! -e /Applications/AppCleaner.app ]; then
@@ -358,20 +316,6 @@ if [ ! -e /Applications/AppCleaner.app ]; then
   echo -e "${GREEN}AppCleaner installation done${NC}"
 else
   echo -e "${GREEN}AppCleaner is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking SizeUp..."
-sleep 1
-if [ ! -e /Applications/SizeUp.app ]; then
-  echo -e "${RED}SizeUp is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install sizeup
-  echo -e "====================================================================="
-  echo -e "${GREEN}SizeUp installation done${NC}"
-else
-  echo -e "${GREEN}SizeUp is installed${NC}"
 fi
 
 echo -e "..."
@@ -445,35 +389,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking Steam..."
-sleep 1
-if [ ! -e /Applications/Steam.app ]; then
-  echo -e "${RED}Steam is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install steam
-  echo -e "====================================================================="
-  echo -e "${GREEN}Steam installation done${NC}"
-else
-  echo -e "${GREEN}Steam is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Battle.net..."
-sleep 1
-if [ ! -e /Applications/Battle.net.app ]; then
-  echo -e "${RED}Battle.net is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install battle-net
-  open ~/Casks/battle-net/latest/Battle.net-Setup.app
-  echo -e "====================================================================="
-  echo -e "${GREEN}Battle.net installation done${NC}"
-else
-  echo -e "${GREEN}Battle.net is installed${NC}"
-fi
-
-echo -e "..."
 echo -e "Checking Filezilla..."
 sleep 1
 if [ ! -e /Applications/Filezilla.app ]; then
@@ -513,20 +428,6 @@ if [ ! -e /Applications/Adobe\ Acrobat\ Reader\ DC.app ]; then
   echo -e "${GREEN}Adobe Reader installation done${NC}"
 else
   echo -e "${GREEN}Adobe Reader is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Handbrake..."
-sleep 1
-if [ ! -e /Applications/handbrake.app ]; then
-  echo -e "${RED}Handbrake is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install handbrake
-  echo -e "====================================================================="
-  echo -e "${GREEN}Handbrake installation done${NC}"
-else
-  echo -e "${GREEN}Handbrake is installed${NC}"
 fi
 
 echo -e "..."
