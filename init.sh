@@ -121,6 +121,7 @@ if ! command -v "gulp" > /dev/null; then
   echo -e "${RED}Gulp is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
+  sudo chown $USER /usr/local/lib/node_modules
   npm install gulp-cli -g
   echo -e "====================================================================="
   echo -e "${GREEN}Gulp installation done${NC}"
@@ -135,6 +136,7 @@ if ! command -v "bower" > /dev/null; then
   echo -e "${RED}Bower is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
+  sudo chown $USER /usr/local/lib/node_modules
   npm install -g bower
   echo -e "====================================================================="
   echo -e "${GREEN}Bower installation done${NC}"

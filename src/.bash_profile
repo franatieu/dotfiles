@@ -1,3 +1,4 @@
+source ~/.profile
 # ---------------------------------------------------------------------
 # Welcome
 # ---------------------------------------------------------------------
@@ -6,7 +7,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/git/bin:~/bin:~/.composer/vendor/bin:/Applications/MAMP/Library/bin/:$PATH
+export PATH=/usr/local/bin:/usr/bin:~/bin:~/.composer/vendor/bin:/Applications/MAMP/Library/bin/:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=~/Casks"
 
 # ---------------------------------------------------------------------
@@ -143,6 +144,7 @@ gbD() {
 
   git branch -D $BNAME
   git push origin --delete $BNAME
+  git remote prune origin
 }
 # ---------------------------------------------------------------------
 # Source local machine config
