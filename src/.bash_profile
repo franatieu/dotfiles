@@ -7,7 +7,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/local/bin:/usr/bin:~/bin:~/.composer/vendor/bin:/Applications/MAMP/Library/bin/:$PATH
+export PATH=/Applications/MAMP/bin/:/usr/local/bin/:~/.composer/vendor/bin:/usr/local/opt/node@8/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # ---------------------------------------------------------------------
@@ -145,6 +145,11 @@ gbD() {
   git branch -D $BNAME
   git push origin --delete $BNAME
   git remote prune origin
+}
+switchphp() {
+  la /Applications/MAMP/bin/php/
+  read -e -p "Choose a PHP version: " PHPV
+  ln -sf /Applications/MAMP/bin/php/$PHPV/bin/php /usr/local/bin/php
 }
 # ---------------------------------------------------------------------
 # Source local machine config
