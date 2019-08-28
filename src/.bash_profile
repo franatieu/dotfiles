@@ -7,7 +7,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/Applications/MAMP/bin/:/usr/local/bin/:~/.composer/vendor/bin:/usr/local/opt/node@8/bin:$PATH
+export PATH=/usr/local/bin/:~/.composer/vendor/bin:/usr/local/opt/node@8/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # ---------------------------------------------------------------------
@@ -86,7 +86,7 @@ alias editbash='nano ~/.bash_profile'
 alias dotfiles='cd ~/dotfiles'
 alias projects='cd ~/projects/'
 alias ..='cd ..'
-alias la='ls -als'
+alias la='ls -Als'
 alias edit='subl'
 alias ~="cd ~"
 alias c='clear'
@@ -150,6 +150,7 @@ switchphp() {
   la /Applications/MAMP/bin/php/
   read -e -p "Choose a PHP version: " PHPV
   ln -sf /Applications/MAMP/bin/php/$PHPV/bin/php /usr/local/bin/php
+  php -v
 }
 # ---------------------------------------------------------------------
 # Source local machine config
@@ -179,3 +180,4 @@ export BLOCKSIZE=1k
 # Misc
 # ---------------------------------------------------------------------
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
