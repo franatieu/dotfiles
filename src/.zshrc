@@ -117,9 +117,9 @@ php_server() {
   DOCROOT=${DOCROOT:-$PWD}
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
-parse_git_branch() {
-  git branch &> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
+# parse_git_branch() {
+#   git branch &> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# }
 gtu() {
   read -e -p "Please enter the old tag name: " TAGOLD
   read -e -p "Please enter the new tag name: " TAGNEW
@@ -156,10 +156,12 @@ fi
 # ---------------------------------------------------------------------
 # Prompt
 # ---------------------------------------------------------------------
-autoload -U colors && colors
-PS1="%{$fg[cyan]%}%n@%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%} %{$fg[green]%}$(parse_git_branch)%{$reset_color%} "
-export CLICOLOR=1
-export LSCOLORS=fxFxBxDxCxegedabagacad
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+setopt PROMPT_SUBST
+PROMPT='%{%F{cyan}%}%n@%m%{%F{none}%} %{%F{yellow}%}%9c%{%F{none}%}%{%F{green}%}$(parse_git_branch)%{%F{none}%} $ '
 
 # ---------------------------------------------------------------------
 # Default Editor
