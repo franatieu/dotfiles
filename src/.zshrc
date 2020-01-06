@@ -81,8 +81,6 @@ alias gdc='git diff --cached'
 # Other aliases
 # ---------------------------------------------------------------------
 alias ghostscript='/usr/local/bin/gs'
-alias sourcebash='source ~/.bash_profile'
-alias editbash='nano ~/.bash_profile'
 alias dotfiles='cd ~/dotfiles'
 alias projects='cd ~/projects/'
 alias ..='cd ..'
@@ -94,8 +92,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias rmr='sudo rm -R'
 alias flushdns=' dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
-alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 alias composerinstall='composer install --prefer-dist'
 alias ci='composer install'
 alias cu='composer update'
@@ -160,7 +156,8 @@ fi
 # ---------------------------------------------------------------------
 # Prompt
 # ---------------------------------------------------------------------
-export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\] \[\033[32m\]\$(parse_git_branch)\[\033[m\] "
+autoload -U colors && colors
+PS1="%{$fg[cyan]%}%n@%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%} %{$fg[green]%}$(parse_git_branch)%{$reset_color%} "
 export CLICOLOR=1
 export LSCOLORS=fxFxBxDxCxegedabagacad
 

@@ -1,16 +1,16 @@
 # Dotfiles
 
-This is a simple repo where I can easily change and update my dotfiles.
+Latest dotfiles for macOS Catalina.
 
 ## Installation
 
-    # open your terminal
+    # open terminal
 
-    # go ~ if not already
+    # go at ~
 
     cd ~
 
-    # clone my dotfiles
+    # clone dotfiles
 
     git clone https://github.com/franatieu/dotfiles.git
 
@@ -18,16 +18,6 @@ This is a simple repo where I can easily change and update my dotfiles.
 
     bash ~/dotfiles/init.sh
 
-    # source bash_profile to update your terminal
-
-    source ~/.bash_profile
+    # restart terminal
 
     # gg
-
-## Maintenance && Personalization
-
-If you want to add aliases, edit the file
-
-    ~/dotfiles/.bash_profile
-
-Don't forget to source .bash_profile after!

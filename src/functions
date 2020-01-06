@@ -14,16 +14,6 @@ creategitconfig() {
   read -e -p "Please enter your git email: " GITEMAIL
   while read a ; do echo ${a//:name/$GITNAME} ; done < src/.gitconfig > src/.gitconfig.t ; mv src/.gitconfig{.t,}
   while read a ; do echo ${a//:email/$GITEMAIL} ; done < src/.gitconfig > src/.gitconfig.t ; mv src/.gitconfig{.t,}
-  ln -sf ~/dotfiles/src/.gitconfig ~/.gitconfig;
+  mv ~/dotfiles/src/.gitconfig ~/.gitconfig;
   echo -e "${GREEN}.gitconfig link done${NC}"
-}
-
-sublimeConfig() {
-  if [ ! -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]; then
-    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-  fi
-  
-  ln -sf ~/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
-  echo -e "${GREEN}.Sublime text config link done${NC}"
 }

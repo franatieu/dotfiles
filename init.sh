@@ -11,10 +11,10 @@ defaults write com.apple.finder AppleShowAllFiles YES
 echo -e "${GREEN}Showing hidden files done${NC}"
 
 echo -e "..."
-echo -e "Checking .bash_profile..."
+echo -e "Checking .zshrc..."
 sleep 1
-ln -sf ~/dotfiles/src/.bash_profile ~/.bash_profile;
-echo -e "${GREEN}.bash_profile link done${NC}"
+ln -sf ~/dotfiles/src/.zshrc ~/.zshrc;
+echo -e "${GREEN}.zshrc link done${NC}"
 
 echo -e "..."
 echo -e "Checking .gitconfig..."
@@ -127,35 +127,6 @@ if ! command -v "gulp" > /dev/null; then
   echo -e "${GREEN}Gulp installation done${NC}"
 else
   echo -e "${GREEN}Gulp already installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking bower..."
-sleep 1
-if ! command -v "bower" > /dev/null; then
-  echo -e "${RED}Bower is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  sudo chown $USER /usr/local/lib/node_modules
-  npm install -g bower
-  echo -e "====================================================================="
-  echo -e "${GREEN}Bower installation done${NC}"
-else
-  echo -e "${GREEN}Bower already installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking bower-installer..."
-sleep 1
-if ! command -v "bower-installer" > /dev/null; then
-  echo -e "${RED}Bower-installer is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  npm install -g bower-installer
-  echo -e "====================================================================="
-  echo -e "${GREEN}Bower-installer installation done${NC}"
-else
-  echo -e "${GREEN}Bower-installer already installed${NC}"
 fi
 
 echo -e "..."
@@ -298,11 +269,9 @@ if [ ! -e /Applications/Sublime\ Text.app ]; then
   echo -e "Installing..."
   echo -e "====================================================================="
   brew cask install sublime-text
-  sublimeConfig
   echo -e "====================================================================="
   echo -e "${GREEN}Sublime Text installation done${NC}"
 else
-  sublimeConfig
   echo -e "${GREEN}Sublime Text is installed${NC}"
 fi
 
