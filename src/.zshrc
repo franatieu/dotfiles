@@ -118,7 +118,7 @@ php_server() {
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch &> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 gtu() {
   read -e -p "Please enter the old tag name: " TAGOLD
