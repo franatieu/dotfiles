@@ -22,7 +22,12 @@ untracked = cyan
 [core]
 editor = nano
 excludesfile = ~/.gitignore_global
+	preloadIndex = false
 [merge]
 ff = false
 [push]
 default = simple
+[pack]
+	threads = 1
+	packSizeLimit = 100m
+	windowMemory = 100m

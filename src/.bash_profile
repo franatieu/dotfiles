@@ -7,7 +7,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/local/bin/:~/.composer/vendor/bin:/usr/local/opt/node@8/bin:$PATH
+export PATH=/usr/local/bin/:~/.composer/vendor/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # ---------------------------------------------------------------------
@@ -100,8 +100,6 @@ alias composerinstall='composer install --prefer-dist'
 alias ci='composer install'
 alias cu='composer update'
 alias cda='composer dump-autoload'
-alias nano='nano'
-alias npm='npm'
 alias sleepnow='pmset sleepnow'
 alias bed='sleepnow'
 alias tower='gittower'
@@ -181,3 +179,8 @@ export BLOCKSIZE=1k
 # ---------------------------------------------------------------------
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# PYENV
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
