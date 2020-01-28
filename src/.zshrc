@@ -111,9 +111,9 @@ sass_example() {
 php_server() {
   PHP=$(which php)
   HOST=localhost
-  read -e -p "Port:" PORT
+  vared -p "Port:" -c PORT
   PORT=${PORT:-5000}
-  read -e -p "Root:" DOCROOT
+  vared -p "Root:" -c DOCROOT
   DOCROOT=${DOCROOT:-$PWD}
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
@@ -125,7 +125,7 @@ gtu() {
   gf
 }
 gtd() {
-  vared -p -p "Please enter the tag name to delete: " -c TAGNAME
+  vared -p "Please enter the tag name to delete: " -c TAGNAME
 
   git tag -d $TAGNAME
   git push origin :refs/tags/$TAGNAME
@@ -139,7 +139,7 @@ gbD() {
 }
 switchphp() {
   la /Applications/MAMP/bin/php/
-  read -e -p "Choose a PHP version: " PHPV
+  vared -p "Choose a PHP version: " -c PHPV
   ln -sf /Applications/MAMP/bin/php/$PHPV/bin/php /usr/local/bin/php
   php -v
 }
