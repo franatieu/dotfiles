@@ -117,24 +117,21 @@ php_server() {
   DOCROOT=${DOCROOT:-$PWD}
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
-# parse_git_branch() {
-#   git branch &> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-# }
 gtu() {
-  read -e -p "Please enter the old tag name: " TAGOLD
-  read -e -p "Please enter the new tag name: " TAGNEW
+  vared -p "Please enter the old tag name: " -c TAGOLD
+  vared -p "Please enter the new tag name: " -c TAGNEW
 
   git push origin $TAGOLD:$TAGNEW :$TAGOLD && git tag -d $TAGOLD
   gf
 }
 gtd() {
-  read -e -p "Please enter the tag name to delete: " TAGNAME
+  vared -p -p "Please enter the tag name to delete: " -c TAGNAME
 
   git tag -d $TAGNAME
   git push origin :refs/tags/$TAGNAME
 }
 gbD() {
-  read -e -p "Please enter the branch name to delete: " BNAME
+  vared -p "Please enter the branch name to delete: " -c BNAME
 
   git branch -D $BNAME
   git push origin --delete $BNAME
