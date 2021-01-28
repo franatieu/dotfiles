@@ -98,6 +98,20 @@ else
 fi
 
 echo -e "..."
+echo -e "Checking yarn..."
+sleep 1
+if ! command -v "yarn" > /dev/null; then
+  echo -e "${RED}yarn is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  npm install -g yarn
+  echo -e "====================================================================="
+  echo -e "${GREEN}yarn installation done${NC}"
+else
+  echo -e "${GREEN}yarn already installed${NC}"
+fi
+
+echo -e "..."
 echo -e "Checking gulp..."
 sleep 1
 if ! command -v "gulp" > /dev/null; then
