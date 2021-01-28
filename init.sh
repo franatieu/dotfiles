@@ -285,6 +285,10 @@ case $INSTALLVALET in
     valet use php@7.4
     sleep 1
     composer global update
+    sleep 1
+    brew install mysql@5.7
+    sleep 1
+    brew services start mysql@5.7
     ;;
   *)
     echo -e "${RED}lol...${NC}"
