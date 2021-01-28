@@ -15,5 +15,6 @@ creategitconfig() {
   while read a ; do echo ${a//:name/$GITNAME} ; done < src/.gitconfig > src/.gitconfig.t ; mv src/.gitconfig{.t,}
   while read a ; do echo ${a//:email/$GITEMAIL} ; done < src/.gitconfig > src/.gitconfig.t ; mv src/.gitconfig{.t,}
   mv ~/dotfiles/src/.gitconfig ~/.gitconfig;
+  ln -sf ~/dotfiles/src/.gitignore_global ~/.gitignore_global;
   echo -e "${GREEN}.gitconfig link done${NC}"
 }

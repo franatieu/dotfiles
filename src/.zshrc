@@ -1,4 +1,3 @@
-source ~/.profile
 # ---------------------------------------------------------------------
 # Welcome
 # ---------------------------------------------------------------------
@@ -101,6 +100,7 @@ alias bed='sleepnow'
 alias tower='gittower'
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete; find . -type f -name '*.LCK' -ls -delete; find . -name "_notes" -print0 | xargs -0 rm -rf;"
 alias curlrest='curl -v -H "Accept: application/json" -H "Content-type: application/json" -X'
+alias mongod='mongod --dbpath=/usr/local/var/mongodb'
 
 # ---------------------------------------------------------------------
 # Functions
@@ -173,10 +173,3 @@ export BLOCKSIZE=1k
 # ---------------------------------------------------------------------
 # Misc
 # ---------------------------------------------------------------------
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# PYENV
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"

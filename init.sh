@@ -14,12 +14,13 @@ echo -e "..."
 echo -e "Checking .zshrc..."
 sleep 1
 ln -sf ~/dotfiles/src/.zshrc ~/.zshrc;
+mkdir -p /usr/local/bin;
 echo -e "${GREEN}.zshrc link done${NC}"
 
 echo -e "..."
 echo -e "Checking .gitconfig..."
 sleep 1
-if [ ! -f ~/dotfiles/src/.gitconfig ]; then
+if [ ! -f ~/.gitconfig ]; then
   echo -e "${RED}.gitconfig is missing${NC}"
   echo -e "Creating .gitconfig..."
   creategitconfig
@@ -37,12 +38,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking .bashrc..."
-sleep 1
-ln -sf ~/dotfiles/src/.bashrc ~/.bashrc;
-echo -e "${GREEN}.bashrc link done${NC}"
-
-echo -e "..."
 echo -e "Checking projects folder..."
 sleep 1
 if [ ! -d ~/Projects ]; then
@@ -52,18 +47,6 @@ if [ ! -d ~/Projects ]; then
   echo -e "${GREEN}Projects folder done${NC}"
 else
   echo -e "${GREEN}Projects folder already exists${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking php..."
-sleep 1
-LATESTPHP=$(ls -t /Applications/MAMP/bin/php/ | sed -n 1p)
-if [ ! -f /Applications/MAMP/bin/php/$LATESTPHP/bin/php ]; then
-  echo -e "${RED}MAMP Pro is not installed${NC}"
-else
-  ln -sf /Applications/MAMP/bin/php/$LATESTPHP/bin/php /usr/local/bin/php
-  echo -e "${GREEN}MAMP is installed${NC}"
-  echo -e "${GREEN}$LATESTPHP link done${NC}"
 fi
 
 echo -e "..."
@@ -207,8 +190,12 @@ if ! command -v "mongo" > /dev/null; then
   echo -e "Installing..."
   echo -e "====================================================================="
   brew install mongodb
-  sudo mkdir -p /data/db
-  sudo chown $USER /data/db
+  sleep 1
+  brew tap mongodb/brew
+  sudo mkdir -p /usr/local/var/mongodb/data/db
+  sudo chown $USER /usr/local/var/mongodb/data/db
+  sleep 1
+  brew install mongodb-community@4.4
   echo -e "====================================================================="
   echo -e "${GREEN}Mongodb installation done${NC}"
 else
@@ -227,18 +214,31 @@ else
   echo -e "${GREEN}SSH folder already exists${NC}"
 fi
 sleep 2
+
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
   echo -e "${RED}SSH file is missing${NC}"
   echo -e "Generating..."
-  read -e -p "Please enter your desired SSH passphrase (leave blank for none): " sshpassphrase
-  ssh-keygen -t rsa -N sshpassphrase -f temp_key
-  mv temp_key ~/.ssh/id_rsa
-  mv temp_key.pub ~/.ssh/id_rsa.pub
+  ssh-keygen -t rsa
+  sshfiles
+  cp ~/dotfiles/src/ssh_config ~/.ssh/config
   echo -e "${GREEN}SSH file done${NC}"
 else
   echo -e "${GREEN}SSH file already exists${NC}"
 fi
-sshfiles
+
+echo -e "..."
+echo -e "Checking php..."
+sleep 1
+if ! command -v "php" > /dev/null; then
+  echo -e "${RED}Php is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install php
+  echo -e "====================================================================="
+  echo -e "${GREEN}php installation done${NC}"
+else
+  echo -e "${GREEN}php already installed${NC}"
+fi
 
 echo -e "..."
 echo -e "Checking composer..."
@@ -247,6 +247,7 @@ if ! command -v "composer" > /dev/null; then
   echo -e "${RED}Composer is not installed${NC}"
   echo -e "====================================================================="
   curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+  sudo chown $USER /usr/local/bin/composer
   echo -e "====================================================================="
   echo -e "${GREEN}Composer installation done${NC}"
 else
@@ -261,6 +262,48 @@ else
   fi
 fi
 
+if [ ! -d ~/.composer ]; then
+  echo -e "${RED}composer folder is missing${NC}"
+  echo -e "Creating composer folder..."
+  mkdir ~/.composer
+  echo -e "${GREEN}composer folder done${NC}"
+else
+  sudo chown $USER ~/.composer
+fi
+
+read -r -p "Want laravel valet instead of MAMP? [y/N] " INSTALLVALET
+case $INSTALLVALET in
+  [yY][eE][sS]|[yY])
+    echo -e "${GREEN}Good choice${NC}"
+    echo -e "${GREEN}Installing valet${NC}"
+    composer global require laravel/valet
+    sleep 1
+    valet install
+    sleep 1
+    valet tld loc
+    sleep 1
+    valet use php@7.4
+    sleep 1
+    composer global update
+    ;;
+  *)
+    echo -e "${RED}lol...${NC}"
+    ;;
+esac
+
+echo -e "..."
+echo -e "Checking pyenv..."
+sleep 1
+if ! command -v "pyenv" > /dev/null; then
+  echo -e "${RED}pyenv is not installed${NC}"
+  echo -e "====================================================================="
+  brew install pyenv
+  echo -e "====================================================================="
+  echo -e "${GREEN}pyenv installation done${NC}"
+else
+  echo -e "${GREEN}pyenv is installed${NC}"
+fi
+
 echo -e "..."
 echo -e "Checking Sublime Text..."
 sleep 1
@@ -268,7 +311,9 @@ if [ ! -e /Applications/Sublime\ Text.app ]; then
   echo -e "${RED}Sublime Text is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install sublime-text
+  brew install --cask sublime-text
+  mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+  ln -sf ~/dotfiles/src/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
   echo -e "====================================================================="
   echo -e "${GREEN}Sublime Text installation done${NC}"
 else
@@ -282,7 +327,7 @@ if [ ! -e /Applications/AppCleaner.app ]; then
   echo -e "${RED}AppCleaner is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install appcleaner
+  brew install --cask appcleaner
   echo -e "====================================================================="
   echo -e "${GREEN}AppCleaner installation done${NC}"
 else
@@ -296,7 +341,7 @@ if [ ! -e /Applications/ImageOptim.app ]; then
   echo -e "${RED}ImageOptim is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install imageoptim
+  brew install --cask imageoptim
   echo -e "====================================================================="
   echo -e "${GREEN}ImageOptim installation done${NC}"
 else
@@ -310,7 +355,7 @@ if [ ! -e /Applications/Spotify.app ]; then
   echo -e "${RED}Spotify is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install spotify
+  brew install --cask spotify
   echo -e "====================================================================="
   echo -e "${GREEN}Spotify installation done${NC}"
 else
@@ -324,7 +369,7 @@ if [ ! -e /Applications/Teamviewer.app ]; then
   echo -e "${RED}Teamviewer is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install teamviewer
+  brew install --cask teamviewer
   echo -e "====================================================================="
   echo -e "${GREEN}Teamviewer installation done${NC}"
 else
@@ -338,7 +383,7 @@ if [ ! -e /Applications/The\ Unarchiver.app ]; then
   echo -e "${RED}The Unarchiver is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install the-unarchiver
+  brew install --cask the-unarchiver
   echo -e "====================================================================="
   echo -e "${GREEN}The Unarchiver installation done${NC}"
 else
@@ -352,25 +397,11 @@ if [ ! -e /Applications/VLC.app ]; then
   echo -e "${RED}VLC is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install vlc
+  brew install --cask vlc
   echo -e "====================================================================="
   echo -e "${GREEN}VLC installation done${NC}"
 else
   echo -e "${GREEN}VLC is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Filezilla..."
-sleep 1
-if [ ! -e /Applications/Filezilla.app ]; then
-  echo -e "${RED}Filezilla is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install filezilla
-  echo -e "====================================================================="
-  echo -e "${GREEN}Filezilla installation done${NC}"
-else
-  echo -e "${GREEN}Filezilla is installed${NC}"
 fi
 
 echo -e "..."
@@ -380,38 +411,9 @@ if [ ! -e /Applications/Sequel\ Pro.app ]; then
   echo -e "${RED}Sequel Pro is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew cask install sequel-pro
+  brew install --cask sequel-pro
   echo -e "====================================================================="
   echo -e "${GREEN}Sequel Pro installation done${NC}"
 else
   echo -e "${GREEN}Sequel Pro is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Adobe Reader..."
-sleep 1
-if [ ! -e /Applications/Adobe\ Acrobat\ Reader\ DC.app ]; then
-  echo -e "${RED}Adobe Reader is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install adobe-reader
-  echo -e "====================================================================="
-  echo -e "${GREEN}Adobe Reader installation done${NC}"
-else
-  echo -e "${GREEN}Adobe Reader is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking uTorrent..."
-sleep 1
-if [ ! -e /Applications/uTorrent.app ]; then
-  echo -e "${RED}uTorrent is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew cask install utorrent
-  open ~/Casks/utorrent/latest/uTorrent.app
-  echo -e "====================================================================="
-  echo -e "${GREEN}uTorrent installation done${NC}"
-else
-  echo -e "${GREEN}uTorrent is installed${NC}"
 fi

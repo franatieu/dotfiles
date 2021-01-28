@@ -1,23 +1,15 @@
 # Dotfiles
 
-Latest dotfiles for macOS Catalina.
+Dotfiles for macOS Big Sur.
 
 ## Installation
 
-    # open terminal
-
-    # go at ~
-
     cd ~
-
-    # clone dotfiles
 
     git clone https://github.com/franatieu/dotfiles.git
 
-    # run init.sh command
-
     bash ~/dotfiles/init.sh
 
-    # restart terminal
+restart terminal
 
-    # gg
+GG
