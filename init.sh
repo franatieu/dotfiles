@@ -289,6 +289,8 @@ case $INSTALLVALET in
     brew install mysql@5.7
     sleep 1
     brew services start mysql@5.7
+    sleep 1
+    sudo pecl install mongodb
     ;;
   *)
     echo -e "${RED}lol...${NC}"
