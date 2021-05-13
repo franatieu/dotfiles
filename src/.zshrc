@@ -6,7 +6,7 @@ cat ~/dotfiles/src/welcome
 # ---------------------------------------------------------------------
 # Same PATH
 # ---------------------------------------------------------------------
-export PATH=/usr/local/bin/:~/.composer/vendor/bin:$PATH
+export PATH=/usr/local/bin/:~/.composer/vendor/bin:/usr/local/opt/node@14/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # ---------------------------------------------------------------------

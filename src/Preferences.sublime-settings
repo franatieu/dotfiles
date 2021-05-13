@@ -1,5 +1,6 @@
 {
 	"close_windows_when_empty": true,
+	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage"

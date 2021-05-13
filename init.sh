@@ -90,7 +90,7 @@ if ! command -v "npm" > /dev/null; then
   echo -e "${RED}Node is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew install node
+  brew install node@14
   echo -e "====================================================================="
   echo -e "${GREEN}Node installation done${NC}"
 else
