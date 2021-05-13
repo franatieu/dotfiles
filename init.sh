@@ -325,22 +325,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking Sublime Text..."
-sleep 1
-if [ ! -e /Applications/Sublime\ Text.app ]; then
-  echo -e "${RED}Sublime Text is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew install --cask sublime-text
-  mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-  ln -sf ~/dotfiles/src/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-  echo -e "====================================================================="
-  echo -e "${GREEN}Sublime Text installation done${NC}"
-else
-  echo -e "${GREEN}Sublime Text is installed${NC}"
-fi
-
-echo -e "..."
 echo -e "Checking AppCleaner..."
 sleep 1
 if [ ! -e /Applications/AppCleaner.app ]; then
@@ -366,20 +350,6 @@ if [ ! -e /Applications/ImageOptim.app ]; then
   echo -e "${GREEN}ImageOptim installation done${NC}"
 else
   echo -e "${GREEN}ImageOptim is installed${NC}"
-fi
-
-echo -e "..."
-echo -e "Checking Spotify..."
-sleep 1
-if [ ! -e /Applications/Spotify.app ]; then
-  echo -e "${RED}Spotify is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew install --cask spotify
-  echo -e "====================================================================="
-  echo -e "${GREEN}Spotify installation done${NC}"
-else
-  echo -e "${GREEN}Spotify is installed${NC}"
 fi
 
 echo -e "..."
@@ -411,20 +381,6 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking VLC..."
-sleep 1
-if [ ! -e /Applications/VLC.app ]; then
-  echo -e "${RED}VLC is not installed${NC}"
-  echo -e "Installing..."
-  echo -e "====================================================================="
-  brew install --cask vlc
-  echo -e "====================================================================="
-  echo -e "${GREEN}VLC installation done${NC}"
-else
-  echo -e "${GREEN}VLC is installed${NC}"
-fi
-
-echo -e "..."
 echo -e "Checking Sequel Pro..."
 sleep 1
 if [ ! -e /Applications/Sequel\ Pro.app ]; then
@@ -436,4 +392,20 @@ if [ ! -e /Applications/Sequel\ Pro.app ]; then
   echo -e "${GREEN}Sequel Pro installation done${NC}"
 else
   echo -e "${GREEN}Sequel Pro is installed${NC}"
+fi
+
+echo -e "..."
+echo -e "Checking Sublime Text..."
+sleep 1
+if [ ! -e /Applications/Sublime\ Text.app ]; then
+  echo -e "${RED}Sublime Text is not installed${NC}"
+  echo -e "Installing..."
+  echo -e "====================================================================="
+  brew install --cask sublime-text
+  mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+  ln -sf ~/dotfiles/src/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+  echo -e "====================================================================="
+  echo -e "${GREEN}Sublime Text installation done${NC}"
+else
+  echo -e "${GREEN}Sublime Text is installed${NC}"
 fi
