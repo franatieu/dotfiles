@@ -137,10 +137,26 @@ gbD() {
   git push origin --delete $BNAME
   git remote prune origin
 }
+switchphpmamp() {
+  if ! command -v "vared" > /dev/null; then
+    echo -e "vared is not installed"
+    echo -e "cant fully change version"
+    echo -e "use zsh instead of bash and run this function"
+    echo -e "or do it manually:"
+    echo -e "la /Applications/MAMP/bin/php/"
+    echo -e "replace <version> with desired php"
+    echo -e "ln -sf /Applications/MAMP/bin/php/<version>/bin/php /usr/local/bin/php"
+  else
+    la /Applications/MAMP/bin/php/
+    vared -p "Choose a PHP version: " -c PHPV
+    ln -sf /Applications/MAMP/bin/php/$PHPV/bin/php /usr/local/bin/php
+    php -v
+  fi
+}
 switchphp() {
-  la /Applications/MAMP/bin/php/
-  vared -p "Choose a PHP version: " -c PHPV
-  ln -sf /Applications/MAMP/bin/php/$PHPV/bin/php /usr/local/bin/php
+  brew list | grep php;
+  vared -p "What version?" -c PHPV
+  valet use $PHPV --force; composer global update;
   php -v
 }
 # ---------------------------------------------------------------------
