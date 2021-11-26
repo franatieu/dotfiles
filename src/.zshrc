@@ -117,14 +117,21 @@ php_server() {
   DOCROOT=${DOCROOT:-$PWD}
   $PHP -S $HOST:$PORT -t $DOCROOT
 }
-gtu() {
+gtag() {
+  vared -p "Please enter the new tag name: " -c TAGNEW
+  vared -p "Please enter the new tag message: " -c TAGMESSAGE
+
+  git tag -a $TAGNEW -m $TAGMESSAGE
+  gpt
+}
+gtagu() {
   vared -p "Please enter the old tag name: " -c TAGOLD
   vared -p "Please enter the new tag name: " -c TAGNEW
 
   git push origin $TAGOLD:$TAGNEW :$TAGOLD && git tag -d $TAGOLD
   gf
 }
-gtd() {
+gtagd() {
   vared -p "Please enter the tag name to delete: " -c TAGNAME
 
   git tag -d $TAGNAME
@@ -157,6 +164,21 @@ switchphp() {
   brew list | grep php;
   vared -p "What version?" -c PHPV
   valet use $PHPV --force; composer global update;
+  php -v
+}
+clearphp() {
+  brew list | grep php;
+
+  brew list | grep php | while read -r phpv ; do
+    brew unlink $phpv
+  done
+
+  vared -p "What version?" -c PHPV
+
+  brew link --force --overwrite $PHPV
+  brew services start $PHPV
+  valet use $PHPV --force
+  composer global update;
   php -v
 }
 # ---------------------------------------------------------------------

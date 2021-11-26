@@ -381,17 +381,17 @@ else
 fi
 
 echo -e "..."
-echo -e "Checking Sequel Pro..."
+echo -e "Checking Sequel Ace..."
 sleep 1
-if [ ! -e /Applications/Sequel\ Pro.app ]; then
-  echo -e "${RED}Sequel Pro is not installed${NC}"
+if [ ! -e /Applications/Sequel\ Ace.app ]; then
+  echo -e "${RED}Sequel Ace is not installed${NC}"
   echo -e "Installing..."
   echo -e "====================================================================="
-  brew install --cask sequel-pro
+  brew install --cask sequel-ace
   echo -e "====================================================================="
-  echo -e "${GREEN}Sequel Pro installation done${NC}"
+  echo -e "${GREEN}Sequel Ace installation done${NC}"
 else
-  echo -e "${GREEN}Sequel Pro is installed${NC}"
+  echo -e "${GREEN}Sequel Ace is installed${NC}"
 fi
 
 echo -e "..."
